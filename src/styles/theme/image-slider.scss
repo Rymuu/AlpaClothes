@@ -1,0 +1,13 @@
+.slider {
+    &__img {
+        width: 100%;
+        height: 400px;
+        object-fit: cover
+    }
+
+    &__product {
+        &__img {
+            height: 250px;
+        }
+    }
+}

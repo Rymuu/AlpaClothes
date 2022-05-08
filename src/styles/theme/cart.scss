@@ -1,0 +1,19 @@
+.product__cart {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    .product__img {
+        width: 50px;
+        margin: 20px;
+        height: auto;
+        
+    .product__data {
+        h2 {
+            font-size: 15px;
+        }
+    }
+    .product__price {
+        font-weight: bold;
+    }
+}
+}

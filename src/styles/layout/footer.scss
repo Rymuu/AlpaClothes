@@ -1,0 +1,20 @@
+.footer {
+    &__main {
+        padding: 20px;
+        background: lightgray;
+    }
+}
+
+.text {
+    &__center {
+        text-align: center;
+    }
+    
+    &__right {
+        text-align: right;
+    }
+
+    &__left {
+        text-align: left;
+    }
+}

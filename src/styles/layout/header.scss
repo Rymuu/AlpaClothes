@@ -1,0 +1,51 @@
+.header {
+    &__main {
+        z-index: 999;
+        background-color: rgb(255, 255, 255);
+        position: sticky;
+        width: 100%;
+        height: 15%;
+        top: 0%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+    }
+
+    &__logo {
+        img {
+            width: 70px;
+        }
+    }
+
+    &__nav {
+        .nav {
+            &__list {
+                display: flex;
+                align-items: center;
+                list-style: none;
+            }
+
+            &__item {
+                margin: 0px 20px;
+            }
+
+            &__link {
+                font-weight: bold;
+                font-size: 20px;
+
+                &:hover {
+                    color: $primaryColor;
+                }
+            }
+        }
+    }
+
+    &__separation {
+        z-index: 999;
+        position: fixed;
+        width: 100%;
+        height: 1px;
+        background-color: gray;
+    }
+}

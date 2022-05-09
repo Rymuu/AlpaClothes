@@ -86,7 +86,7 @@ const Header = () => {
                 <Link href="/account">
                   <a className="nav__link"><AccountCircleOutlinedIcon /></a>
                 </Link>
-                <div class="dropdown-content">
+                <div className ="dropdown-content">
                   <a href="/login">Login</a>
                   <a href="/register">Create an account</a>
                 </div>

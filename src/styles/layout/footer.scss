@@ -1,7 +1,8 @@
 .footer {
     &__main {
+        position: inherit;
         padding: 20px;
-        background: lightgray;
+        background: rgb(240 247 255);
     }
 }
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import TitlePage from "../../components/TitlePage";
 import ProductCard from "../../components/ProductCard";
 import productService from "../../services/product.service";
 
@@ -17,7 +16,6 @@ const Index = () => {
 
   return (
     <div className="page__shop">
-      <TitlePage title="Eshop" />
       <div className="products__grid">
         {products &&
           products.map((product) => (

@@ -18,15 +18,17 @@ const Index = () => {
   };
 
   const submitRegister = (e) => {
+    var formData = new FormData();
+    formData.append("pseudo",user.pseudo)
+    formData.append("email",user.email)
+    formData.append("password",user.password)
+    formData.append("nom",user.nom)
+    formData.append("prenom",user.prenom)
+    formData.append("dateNaissance",user.dateNaissance)
     axios
-      .post('http://localhost:8000/client/add', {
-        pseudo: user.pseudo,
-        email: user.email,
-        password: user.password,
-        nom: user.nom,
-        prenom: user.prenom,
-        dateNaissance: user.dateNaissance
-      })
+      .post('http://localhost:8000/client/add', 
+        formData
+      )
       .then(response => {
         // Handle success.
         if (response.data.error) {

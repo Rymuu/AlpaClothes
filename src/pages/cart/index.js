@@ -38,7 +38,7 @@ const Index = () => {
 
   const renderTotalAmount = () => {
     return (
-      <p>Montant total : {cart.reduce((total, product) => total + (product.quantity * product.price),0)} €</p>
+      <p>Montant total : {cart.reduce((total, product) => total + (product.quantity * product.prix),0)} €</p>
     )
   }
 
@@ -64,14 +64,14 @@ const Index = () => {
             <tbody>
               {cart.map((cartItem) => (
                 <tr key={cartItem.id}>
-                  <td>{cartItem.title}</td>
-                  <td>{cartItem.price}</td>
+                  <td>{cartItem.nom}</td>
+                  <td>{cartItem.prix}</td>
                   <td>
                     <button onClick={() => decrementQty(cartItem)}>-</button>
                     {cartItem.quantity}
                     <button onClick={() => incrementQty(cartItem)}>+</button>
                   </td>
-                  <td>{(cartItem.price * cartItem.quantity).toFixed(2)}</td>
+                  <td>{(cartItem.prix * cartItem.quantity).toFixed(2)}</td>
                   {/* .Filter() */}
                   <td>
                     <button onClick={()=>deleteProduct(cartItem)}>Supprimer</button>

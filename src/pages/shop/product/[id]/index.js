@@ -13,7 +13,8 @@ const Index = () => {
 
     productService.getProduct(id)
       .then((data) => {
-      setProduct(data.data);
+      setProduct(data.data[0]);
+      console.log(data);
     })
     .catch(err => console.log(err))
     },[]);
@@ -22,9 +23,9 @@ const Index = () => {
     console.log(product)
 
     let productToInsert = {
-      title : element.title,
-      id : element.identifier,
-      price : element.price,
+      nom : element.nom,
+      id : element.id,
+      prix : element.prix,
       image : element.image,
       quantity : 1
 
@@ -61,14 +62,15 @@ const Index = () => {
 
   return (
     <div className="product_page">
-      
+      <h1><p>{product && product.nom}</p></h1>
+      <img src={`${product && product.image}`} alt={product && product.nom} />
       <div className="text__center">
-        <ProductPrice price={product && product.attributes.price} currency="€" />
-        <p>{product && product.attributes.description}</p>
+        <ProductPrice price={product && product.prix} currency="€" />
+        <p>{product && product.description}</p>
         <Button
           type="button"
           classes="btn btn__color-black"
-          function={() => addTocart(product.attributes)}
+          function={() => addTocart(product)}
           title="ajouter au panier"
         />
       </div>

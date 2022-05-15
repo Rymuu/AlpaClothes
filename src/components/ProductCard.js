@@ -23,13 +23,13 @@ const Productcard = (props) => {
     <div className="product__card">
       <div className="product__img">
         <Link href={`/shop/product/${props.product.id}`}>
-          <img src={`http://localhost:1337${props.product.attributes.image.data.attributes.url}`} alt={props.product.attributes.title} />
+          <img src={`${props.product.image}`} alt={props.product.nom} />
         </Link>
       </div>
       <div className="product__data">
-        <h2>{props.product.attributes.title}</h2>
-        <p>{props.product.attributes.price} € </p>
-        <Button title="ajouter au panier" function={() => addTocart(props.product.attributes)} type="button" classes="btn btn__color-black" />
+        <h2>{props.product.nom}</h2>
+        <p>{props.product.prix} € </p>
+        <Button title="ajouter au panier" function={() => addTocart(props.product)} type="button" classes="btn btn__color-black" />
       </div>
     </div>
   );

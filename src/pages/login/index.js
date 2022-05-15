@@ -44,6 +44,7 @@ const Index = () => {
           handleChange={(e) => setUser({ ...user, password: e.target.value })}
         />
         <a>You don't have an account ? </a><a style={linkColor} href="/register">Register.</a>
+        <br /><br />
         <center><Button title="login" classes="btn btn__color-blue-long" type="submit" /></center>
         <a style={linkColor}>Forgot password ?</a>
       </form>

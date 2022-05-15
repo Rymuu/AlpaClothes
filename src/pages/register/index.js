@@ -19,18 +19,23 @@ const Index = () => {
 
   const submitRegister = (e) => {
     axios
-      .post('http://localhost:1337/api/auth/local/register', {
-        username: user.username,
+      .post('http://localhost:8000/client/add', {
+        pseudo: user.pseudo,
         email: user.email,
         password: user.password,
+        nom: user.nom,
+        prenom: user.prenom,
+        dateNaissance: user.dateNaissance
       })
       .then(response => {
         // Handle success.
         if (response.data.error) {
+          console.log(response);
           setShowModal(true)
         } else {
           localStorage.setItem('jwt', response.data.jwt);
           router.push("/profil")
+          console.log(response);
         }
         console.log('User profile', response.data.user);
 
@@ -56,6 +61,27 @@ const Index = () => {
       <form className="form" onSubmit={(e) => submitRegister(e)}>
         <h1 className="text__center">Register</h1>
         <Input
+          label="Firstname"
+          name="Firstname"
+          id="Firstname"
+          type="text"
+          classes="form__input"
+          required={true}
+          placeholder="Firstname"
+          handleChange={(e) => setUser({ ...user, prenom: e.target.value })}
+        />
+        <Input
+          label="Lastname"
+          name="Lastname"
+          id="Lastname"
+          type="text"
+          classes="form__input"
+          required={true}
+          placeholder="Lastname"
+          handleChange={(e) => setUser({ ...user, nom: e.target.value })}
+
+        />
+        <Input
           label="Username"
           name="userName"
           id="userName"
@@ -63,8 +89,18 @@ const Index = () => {
           classes="form__input"
           required={true}
           placeholder="Username"
-          handleChange={(e) => setUser({ ...user, username: e.target.value })}
+          handleChange={(e) => setUser({ ...user, pseudo: e.target.value })}
         />
+        <Input
+          label="Birthdate"
+          name="Birthdate"
+          id="Birthdate"
+          type="text"
+          classes="form__input"
+          required={true}
+          placeholder="Birthdate"
+          handleChange={(e) => setUser({ ...user, dateNaissance: e.target.value })}
+          />
         <Input
           label="Email"
           name="email"

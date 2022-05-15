@@ -1,11 +1,11 @@
-const apiUrl = "http://localhost:1337/api"
+const apiUrl = "http://localhost:8000"
 export default {
     getProducts(){
-        return fetch(`${apiUrl}/products?populate=image`)
+        return fetch(`${apiUrl}/produit/all`)
         .then((res) => res.json())
     },
     getProduct(id){
-        return fetch(`${apiUrl}/products/${id}`)
+        return fetch(`${apiUrl}/produit/${id}`)
         .then((res) => res.json())
     },
 

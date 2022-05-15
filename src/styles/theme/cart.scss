@@ -2,18 +2,35 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
+
+    tbody {
+        margin: 50px;
+    }
+
+
     .product__img {
         width: 50px;
         margin: 20px;
         height: auto;
-        
-    .product__data {
-        h2 {
-            font-size: 15px;
+
+        .product__data {
+            h2 {
+                font-size: 15px;
+            }
+        }
+
+        .product__price {
+            font-weight: bold;
         }
     }
-    .product__price {
-        font-weight: bold;
-    }
 }
+
+.page__cart {
+    img {
+        width: 50px;
+    }
+
+    table {
+        width: 100%;
+    }
 }

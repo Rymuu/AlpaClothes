@@ -38,7 +38,7 @@ const Index = () => {
 
   const renderTotalAmount = () => {
     return (
-      <p>Montant total : {cart.reduce((total, product) => total + (product.quantity * product.prix),0)} €</p>
+      <p>Montant total : {(cart.reduce((total, product) => total + (product.quantity * product.prix),0)).toFixed(2)} €</p>
     )
   }
 
@@ -54,6 +54,7 @@ const Index = () => {
           <table>
             <thead>
               <tr>
+                <th>Image</th>
                 <th>Titre</th>
                 <th>Prix</th>
                 <th>Quantité</th>
@@ -64,6 +65,7 @@ const Index = () => {
             <tbody>
               {cart.map((cartItem) => (
                 <tr key={cartItem.id}>
+                  <td><img src={`${cartItem.image}`} alt={cartItem.nom} /></td>
                   <td>{cartItem.nom}</td>
                   <td>{cartItem.prix}</td>
                   <td>

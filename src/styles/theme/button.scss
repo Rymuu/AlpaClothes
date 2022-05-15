@@ -17,6 +17,19 @@
                 color: black;
                 transition: 0.3s all;
             }
+
+            &-long {
+                background: black;
+                color: white;
+                width: 90%;
+                margin-left: 5%;
+                &:hover {
+                    background: white;
+                    border: 1px solid black;
+                    color: black;
+                    transition: 0.3s all;
+                }
+            }
         }
 
         &-blue {

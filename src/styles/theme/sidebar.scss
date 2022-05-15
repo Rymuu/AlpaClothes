@@ -1,6 +1,11 @@
 .page__shop {
     display: flex;
     .side-navigation-panel {
-        position: sticky;
+        position: fixed;
+    }
+    .sideBarContainer {
+        background-color: green;
+        width: 210px;
+        height: 100%;
     }
 }

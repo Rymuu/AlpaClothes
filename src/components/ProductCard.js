@@ -1,32 +1,38 @@
 import Link from "next/link";
-import {addToCart} from "../pages/shop/[id]/index"
-import Button from "./Button";
+import Button from "../components/Button";
 
 const Productcard = (props) => {
-    return (
-        <div className="product__card">
-              <div className="product__img">
-                <img src={`http://localhost:1337${props.product.attributes.image.data.attributes.url}`} alt={props.product.attributes.name} />
-              </div>
-              <div className="product__data">
-                <h2>{props.product.attributes.name}</h2>
-                <p>
-                  <Link href={`/shop/${props.product.id}`}>
-                  {/* <Link href={'/shop/' + props.product.id} */}
-                    <a>
-                      Voir le produit
-                    </a>
-                  </Link>
-                  <Button
-          type="button"
-          classes="btn btn__color-black"
-          function={() => addToCart(props.product.attributes)}
-          title="ajouter au panier"
-        />
-                </p>
-              </div>
-            </div>
-    );
+
+  const addTocart = (element) => {
+    const cartArray = [];
+    if (localStorage.getItem('cart')) {
+      const localStorageCart = JSON.parse(localStorage.getItem('cart'));
+      localStorageCart.forEach(product => {
+        cartArray.push(product);
+      });
+      cartArray.push(element);
+      console.log(cartArray);
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+    }
+    else {
+      cartArray.push(element);
+      localStorage.setItem('cart', JSON.stringify(cartArray));
+    }
+  };
+  return (
+    <div className="product__card">
+      <div className="product__img">
+        <Link href={`/shop/product/${props.product.id}`}>
+          <img src={`http://localhost:1337${props.product.attributes.image.data.attributes.url}`} alt={props.product.attributes.title} />
+        </Link>
+      </div>
+      <div className="product__data">
+        <h2>{props.product.attributes.title}</h2>
+        <p>{props.product.attributes.price} € </p>
+        <Button title="ajouter au panier" function={() => addTocart(props.product.attributes)} type="button" classes="btn btn__color-black" />
+      </div>
+    </div>
+  );
 }
 
 export default Productcard;

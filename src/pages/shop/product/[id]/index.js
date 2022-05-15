@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import Button from "../../../components/Button";
-import productService from "../../../services/product.service";
+import ProductPrice from "../../../../components/ProductPrice"
+import Button from "../../../../components/Button";
+import productService from "../../../../services/product.service";
 
 const Index = () => {
   const router = useRouter();
@@ -18,10 +19,12 @@ const Index = () => {
     },[]);
 
   const addTocart = (element) => {
+    console.log(product)
 
     let productToInsert = {
-      name : element.name,
-      id : element.id,
+      title : element.title,
+      id : element.identifier,
+      price : element.price,
       image : element.image,
       quantity : 1
 
@@ -60,7 +63,8 @@ const Index = () => {
     <div className="product_page">
       
       <div className="text__center">
-        <p>{product && product.attributes.name}</p>
+        <ProductPrice price={product && product.attributes.price} currency="€" />
+        <p>{product && product.attributes.description}</p>
         <Button
           type="button"
           classes="btn btn__color-black"

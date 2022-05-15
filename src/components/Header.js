@@ -35,14 +35,6 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav__item">
-              <Link href="/about">
-                {router.asPath === "/about" ?
-                  (<a className="nav__link__colored">About</a>)
-                  :
-                  (<a className="nav__link">About</a>)}
-              </Link>
-            </li>
-            <li className="nav__item">
               <Link href="/shop">
                 {router.asPath === "/shop" ?
                   (<a className="nav__link__colored">Shop</a>)
@@ -66,7 +58,14 @@ const Header = () => {
                   (<a className="nav__link">Sale</a>)}
               </Link>
             </li>
-
+            <li className="nav__item">
+              <Link href="/about">
+                {router.asPath === "/about" ?
+                  (<a className="nav__link__colored">About</a>)
+                  :
+                  (<a className="nav__link">About</a>)}
+              </Link>
+            </li>
           </ul>
         </nav>
         <nav className="header__nav">
@@ -86,7 +85,7 @@ const Header = () => {
                 <Link href="/account">
                   <a className="nav__link"><AccountCircleOutlinedIcon /></a>
                 </Link>
-                <div className ="dropdown-content">
+                <div className="dropdown-content">
                   <a href="/login">Login</a>
                   <a href="/register">Create an account</a>
                 </div>

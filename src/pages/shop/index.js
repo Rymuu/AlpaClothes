@@ -11,15 +11,15 @@ const Index = () => {
         setProducts(data.data);
       })
       .catch(err => console.log(err))
-      },[]);
- 
+  }, []);
+
 
   return (
     <div className="page__shop">
       <div className="products__grid">
         {products &&
           products.map((product) => (
-           <ProductCard product={product} key={product.id}/>
+            <ProductCard product={product} key={product.id} />
           ))}
       </div>
     </div>

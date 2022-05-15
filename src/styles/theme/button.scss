@@ -4,10 +4,13 @@
     background-color: none;
     text-transform: uppercase;
     transition: 0.3s all;
+    cursor: pointer;
+
     &__color {
         &-black {
             background: black;
             color: white;
+
             &:hover {
                 background: white;
                 border: 1px solid black;
@@ -15,9 +18,34 @@
                 transition: 0.3s all;
             }
         }
+
+        &-blue {
+            &:hover {
+                background: white;
+                border: 1px solid black;
+                color: black;
+                transition: 0.3s all;
+            }
+
+            &-long {
+                width: 100%;
+                border-radius: 3px;
+                box-shadow: 3px 5px 5px rgb(68, 156, 169);
+                font-size: large;
+                background: $primaryColor;
+                color: white;
+
+                &:hover {
+                    background: rgb(97, 195, 210);
+                    transition: 0.3s all;
+                }
+            }
+        }
+
         &-white {
             border: 1px solid black;
             color: black;
+
             &:hover {
                 background: black;
                 color: white;

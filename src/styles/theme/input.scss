@@ -1,19 +1,23 @@
 .form {
     width: 40%;
     margin: 0 auto;
+
     &__group {
         margin-bottom: 20px;
+
         input {
             padding: 10px 5px;
             border-radius: 3px;
             transition: 0.3s all;
             width: 100%;
+
             &:focus {
                 transition: 0.3s all;
                 border: 2px solid black;
                 outline: none;
             }
         }
+
         label {
             display: block;
             margin-bottom: 10px;
@@ -22,5 +26,27 @@
             font-size: 16px;
             letter-spacing: 1px;
         }
+    }
+}
+
+.page__login {
+    form {
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: 460px;
+        padding-bottom: 15%;
+    }
+}
+
+.page__register {
+    form {
+        position: absolute;
+        z-index: 2;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        top: 490px;
+        padding-bottom: 15%;
     }
 }

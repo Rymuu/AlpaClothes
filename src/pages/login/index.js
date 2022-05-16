@@ -15,7 +15,33 @@ const Index = () => {
   };
 
   const submitLogin = (e) => {
-    console.log("submitted !");
+    axios
+      .post('http://localhost:8000/api/client/login_check',
+        {
+          username: user.username,
+          password: user.password
+        }
+      )
+      .then(response => {
+        // Handle success.
+        if (response.data.error) {
+          console.log(response);
+        } else {
+          localStorage.setItem('jwt', response.data.token);
+          
+          console.log(response);
+        }
+        console.log('User profile', response.data.user);
+
+      })
+      .catch(error => {
+        // Handle error.
+        console.log('An error occurred:', error.response);
+      });
+    console.log(e);
+    e.preventDefault();
+    console.log("send");
+    console.log(user);
   }
   return (
     <div className="page__login">

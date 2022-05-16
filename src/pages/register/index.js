@@ -4,13 +4,21 @@ import Button from "../../components/Button";
 import { useRouter } from 'next/router';
 import axios from "axios";
 import Modal from "../../components/Modal";
-import { fontWeight } from "@mui/system";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Index = () => {
-
+  const notify = () => toast.success('Your account has been successfully created !', {
+    position: "top-center",
+    autoClose: 5000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+  });
   const router = useRouter();
   const [user, setUser] = useState();
-  const [showModal, setShowModal] = useState(false);
 
   const linkColor = {
     color: "rgb(68, 156, 169)",
@@ -19,24 +27,23 @@ const Index = () => {
 
   const submitRegister = (e) => {
     var formData = new FormData();
-    formData.append("pseudo",user.pseudo)
-    formData.append("email",user.email)
-    formData.append("password",user.password)
-    formData.append("nom",user.nom)
-    formData.append("prenom",user.prenom)
-    formData.append("dateNaissance",user.dateNaissance)
+    formData.append("pseudo", user.pseudo)
+    formData.append("email", user.email)
+    formData.append("password", user.password)
+    formData.append("nom", user.nom)
+    formData.append("prenom", user.prenom)
+    formData.append("dateNaissance", user.dateNaissance)
     axios
-      .post('http://localhost:8000/client/add', 
+      .post('http://localhost:8000/client/add',
         formData
       )
       .then(response => {
         // Handle success.
         if (response.data.error) {
           console.log(response);
-          setShowModal(true)
         } else {
-          localStorage.setItem('jwt', response.data.jwt);
-          router.push("/profil")
+          notify();
+          setTimeout(() => {router.push("/login")}, 5000)
           console.log(response);
         }
         console.log('User profile', response.data.user);
@@ -45,7 +52,15 @@ const Index = () => {
       .catch(error => {
         // Handle error.
         console.log('An error occurred:', error.response);
-        setShowModal(true);
+        toast.error(`${error.response.data.error}`, {
+          position: "top-center",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
       });
     console.log(e);
     e.preventDefault();
@@ -55,11 +70,18 @@ const Index = () => {
 
   return (
     <div className="page__register">
+      <ToastContainer
+        position="top-center"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover />
       <div className="background_image"></div>
       <div className="form__opacity__register"></div>
-      <Modal title="Titre Modal" isActive={showModal} isInfo={false} closefunction={() => setShowModal(!showModal)}>
-        <p>kesta foutu bro ya une erreur a ta plass jrelirai les zinfo du formulair</p>
-      </Modal>
       <form className="form" onSubmit={(e) => submitRegister(e)}>
         <h1 className="text__center">Register</h1>
         <Input
@@ -102,7 +124,7 @@ const Index = () => {
           required={true}
           placeholder="Birthdate"
           handleChange={(e) => setUser({ ...user, dateNaissance: e.target.value })}
-          />
+        />
         <Input
           label="Email"
           name="email"

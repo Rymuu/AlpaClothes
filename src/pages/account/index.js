@@ -1,14 +1,15 @@
 
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import withAuth from "../../HOC/withAuth";
 import Button from "../../components/Button";
 import { useRouter } from 'next/router';
+import UserContext from "../../User/UserContext"
 
 const Index = () => {
 
   const router = useRouter();
-  const [user, setUser] = useState();
+  const user = useContext(UserContext);
 
   const logout = () => {
     localStorage.removeItem('jwt');
@@ -16,23 +17,7 @@ const Index = () => {
     }
 
   useEffect(() => {
-
-    let jwtUser = localStorage.getItem('jwt');
-
-    axios
-    .get('http://localhost:8000/client/me',{
-      headers : {
-        Authorization : `Bearer ${jwtUser}`
-      }
-    })
-    .then(response => {
-      setUser(response.data.data[0])
-      console.log(response)
-    })
-    .catch(error => {
-      console.log('An error occurred:', error.response);
-    });
-  }, []);
+  }, [user]);
 
   return (
     <>
@@ -42,7 +27,7 @@ const Index = () => {
           classes="btn btn__color-black"
           function={logout}
           title="Déconnexion" />
-    <h1>Bienvenue {user && user.pseudo} !</h1>
+    <h1>Bienvenue {user.user && user.user.pseudo} !</h1>
     </>
   );
 }

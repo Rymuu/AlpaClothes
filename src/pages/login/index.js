@@ -1,13 +1,15 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { useRouter } from 'next/router';
 import axios from "axios";
+import UserContext from "../../User/UserContext";
 
 const Index = () => {
 
   const router = useRouter();
   const [user, setUser] = useState();
+  const {login} = useContext(UserContext);
 
   const linkColor = {
     color: "rgb(68, 156, 169)",
@@ -32,7 +34,7 @@ const Index = () => {
           console.log(response);
         }
         console.log('User profile', response.data.user);
-
+        login(localStorage.getItem("jwt"));
       })
       .catch(error => {
         // Handle error.

@@ -1,15 +1,20 @@
 import axios from "axios";
 import { createContext,useState,useEffect } from "react";
+import { useRouter } from 'next/router';
+
 
 const UserContext = createContext({
     user: null,
+    jwt:null,
     login: (jwtLogin) => {},
     logout: () => {},
     authReady: false
 });
 
 export const UserContextProvider = ({children}) => {
-    const [user, setUser] = useState();
+    const [user, setUser] = useState([]);
+    const [jwtLogin , setJwtLogin] = useState("")
+    const router = useRouter();
     useEffect(() => {
         
     }, [user]);
@@ -23,12 +28,14 @@ export const UserContextProvider = ({children}) => {
         })
         .then(response => {
           setUser(response.data.data[0])
+          setJwtLogin(jwtUser);
+          router.push("/account")
         })
         .catch(error => {
           console.log('An error occurred:', error.response);
         });
     }
-    const context = {user: user, login: login};
+    const context = {user: user, login: login ,jwt: jwtLogin};
     return (
         <UserContext.Provider value={context}>
             { children }

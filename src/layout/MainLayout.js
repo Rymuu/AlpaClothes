@@ -4,11 +4,6 @@ const MainLayout = ({children}) => {
     return (
         <>
             <Header/>
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
             <main>
                 {children}
             </main>

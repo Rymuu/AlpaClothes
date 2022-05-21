@@ -3,7 +3,6 @@ import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { useRouter } from 'next/router';
 import axios from "axios";
-import Modal from "../../components/Modal";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

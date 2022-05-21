@@ -7,11 +7,11 @@ const Productcard = (props) => {
     console.log(props.product)
 
     let productToInsert = {
-      nom : element.nom,
-      id : element.id,
-      prix : element.prix,
-      image : element.image,
-      quantity : 1
+      nom: element.nom,
+      id: element.id,
+      prix: element.prix,
+      image: element.image,
+      quantity: 1
 
     };
 
@@ -25,12 +25,12 @@ const Productcard = (props) => {
       });
       const indice = cartArray.findIndex((product) => product.id === productToInsert.id)
       //si le produit est déjà dans le panier
-      if (indice !== -1){
+      if (indice !== -1) {
         productToInsert = cartArray[indice];
         productToInsert.quantity += 1;
         //productToInsert.quantity ++;
       }
-      else{
+      else {
         cartArray.push(productToInsert);
       }
 
@@ -54,7 +54,9 @@ const Productcard = (props) => {
         <h2>{props.product.nom}</h2>
         <p>{props.product.prix} € </p>
       </div>
-      <Button title="ajouter au panier" function={() => addTocart(props.product)} type="button" classes="btn btn__color-black-long" />
+      <div className="product__button">
+        <Button title="ajouter au panier" function={() => addTocart(props.product)} type="button" classes="btn btn__color-black-long" />
+      </div>
     </div>
   );
 }

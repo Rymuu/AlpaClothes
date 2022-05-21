@@ -58,22 +58,6 @@ const Header = () => {
               </Link>
             </li>
             <li className="nav__item">
-              <Link href="/blog">
-                {router.asPath === "/blog" ?
-                  (<a className="nav__link__colored">Blog</a>)
-                  :
-                  (<a className="nav__link">Blog</a>)}
-              </Link>
-            </li>
-            <li className="nav__item">
-              <Link href="/sale">
-                {router.asPath === "/sale" ?
-                  (<a className="nav__link__colored">Sale</a>)
-                  :
-                  (<a className="nav__link">Sale</a>)}
-              </Link>
-            </li>
-            <li className="nav__item">
               <Link href="/about">
                 {router.asPath === "/about" ?
                   (<a className="nav__link__colored">About</a>)

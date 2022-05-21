@@ -1,7 +1,9 @@
 import Link from "next/link";
-import Button from "../components/Button";
+import Button from "./Button";
+import ProductPrice from "./ProductPrice";
 
 const ProductCardId = (props) => {
+    console.log(props.product)
 
     const addTocart = (element) => {
         console.log(props.product)
@@ -44,18 +46,20 @@ const ProductCardId = (props) => {
         }
     };
     return (
-        <div className="product__card__id">
-            <h1><p>{product && product.nom}</p></h1>
-            <img src={`${product && product.image}`} alt={product && product.nom} />
-            <div className="text__center">
-                <ProductPrice price={product && product.prix} currency="€" />
-                <p>{product && product.description}</p>
-                <Button
-                    type="button"
-                    classes="btn btn__color-black"
-                    function={() => addTocart(product)}
-                    title="ajouter au panier"
-                />
+        <div className="product__id">
+            <div className="container__id">
+                <img src={`${props.product && props.product.image}`} alt={props.product && props.product.nom} />
+                <div className="product__id__data">
+                    <h1>{props.product && props.product.nom}</h1>
+                    <ProductPrice price={props.product && props.product.prix} currency="€" />
+                    <p>{props.product && props.product.description}</p>
+                    <Button
+                        type="button"
+                        classes="btn btn__color-black"
+                        function={() => addTocart(props.product)}
+                        title="ajouter au panier"
+                    />
+                </div>
             </div>
         </div>
     );

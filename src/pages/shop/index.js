@@ -30,6 +30,7 @@ const Index = () => {
             <option value="cat">Dsc</option>
           </select>
         </div>
+        <p>Popular filter :</p>
         <div className="filter__container">
           <select className="select-filter" name="colors" id="color-select">
             <option value="">Colors</option>

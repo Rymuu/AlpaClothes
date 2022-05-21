@@ -1,0 +1,14 @@
+.product__id {
+    .container__id {
+        display: flex;
+        flex-wrap: wrap;
+
+        img {
+            width: 500px;
+            padding: 50px;
+        }
+    }
+    &__data {
+        padding: 50px;
+    }
+}

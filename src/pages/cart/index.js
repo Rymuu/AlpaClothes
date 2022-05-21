@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from "react";
+import axios from "axios";
+import React, { useEffect, useState, useContext } from "react";
 import Button from "../../components/Button";
+import UserContext from "../../User/UserContext";
 
 const Index = () => {
   const [cart, setCart] = useState();
+  const state = useContext(UserContext);
 
   const deleteCart = () => {
     localStorage.removeItem("cart");
@@ -41,9 +44,38 @@ const Index = () => {
       <p>Montant total : {(cart.reduce((total, product) => total + (product.quantity * product.prix),0)).toFixed(2)} €</p>
     )
   }
+  const totalAmount = () => {
+    return (
+      (cart.reduce((total, product) => total + (product.quantity * product.prix),0)).toFixed(2)
+    )
+  }
 
   const renderTotalQty = () => {
     return cart.reduce((total, product) => total + product.quantity,0)
+  }
+  
+  const getFormData = (object) => {
+      const formData = new FormData();
+      let panierArray = new Array(1);
+      Object.keys(object).forEach(key => {
+            panierArray[key]= [object[key].id,object[key].quantity]
+        });
+        formData.append("panier", panierArray)
+      return formData;
+  }
+
+  const paidCart = () => {
+    let panier = JSON.parse(localStorage.getItem("cart"))
+    var formData = getFormData(panier);
+    formData.append("prix",totalAmount())
+    console.log(state);
+    axios.post("http://localhost:8000/commande/add",formData,{
+      headers : {
+      Authorization : `Bearer ${state.jwt}`
+      }
+    }).then().catch((error) =>{
+      console.log(error.response)
+    })
   }
 
   return (
@@ -87,6 +119,12 @@ const Index = () => {
             classes="btn btn__color-white"
             type="button"
             function={deleteCart}
+          />
+          <Button
+            title="Payer"
+            classes="btn btn__color-white"
+            type="button"
+            function={paidCart}
           />
           {renderTotalAmount()}
         </>

@@ -1,15 +1,17 @@
-import React, { useState } from "react";
+import React, { useState,useContext } from "react";
 import Input from "../../components/Input";
 import Button from "../../components/Button";
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import UserContext from "../../User/UserContext";
 
 const Index = () => {
 
   const router = useRouter();
   const [user, setUser] = useState();
+  const {login} = useContext(UserContext);
 
   const linkColor = {
     color: "rgb(68, 156, 169)",
@@ -33,7 +35,7 @@ const Index = () => {
           router.push("/account");
         }
         console.log('User profile', response.data.user);
-
+        login(localStorage.getItem("jwt"));
       })
       .catch(error => {
         toast.error(`${error.response.data.message}`, {

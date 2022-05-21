@@ -50,3 +50,23 @@
         padding-bottom: 15%;
     }
 }
+
+.search__container {
+    position: relative;
+    display: flex;
+    height: 40px;
+
+    input {
+        position: absolute;
+        left: 30%;
+        width: 40%;
+        height: 40px;
+    }
+
+    .select-filter {
+        position: absolute;
+        right: 10%;
+        width: 90px;
+        height: 40px;
+    }
+}

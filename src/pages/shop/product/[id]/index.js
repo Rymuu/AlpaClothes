@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import ProductPrice from "../../../../components/ProductPrice"
-import Button from "../../../../components/Button";
 import productService from "../../../../services/product.service";
+import ProductCardId from "../../../../components/ProductCardId";
 
 const Index = () => {
   const router = useRouter();
@@ -62,18 +61,7 @@ const Index = () => {
 
   return (
     <div className="product_page">
-      <h1><p>{product && product.nom}</p></h1>
-      <img src={`${product && product.image}`} alt={product && product.nom} />
-      <div className="text__center">
-        <ProductPrice price={product && product.prix} currency="€" />
-        <p>{product && product.description}</p>
-        <Button
-          type="button"
-          classes="btn btn__color-black"
-          function={() => addTocart(product)}
-          title="ajouter au panier"
-        />
-      </div>
+      <ProductCardId/>
     </div>
   );
 };

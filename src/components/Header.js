@@ -8,10 +8,25 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useRouter } from "next/router";
 
 const Header = () => {
-  const [token, setToken] = useState(typeof window !== "undefined" ? localStorage.getItem("jwt") : []);
+  const [isLogged, setIsLogged] = useState()
 
+  const getAccessToken = () => {
+    if (typeof window !== 'undefined')
+      return localStorage.getItem('jwt');
+  };
+
+  const accessToken = getAccessToken();
   useEffect(() => {
-    setToken(localStorage.getItem("jwt"));
+    {
+      accessToken === null ?
+        (
+          setIsLogged(false)
+        )
+        :
+        (
+          setIsLogged(true)
+        )
+    }
   }, []);
 
 
@@ -80,17 +95,35 @@ const Header = () => {
                 <a className="nav__link"><ShoppingBagOutlinedIcon /></a>
               </Link>
             </li>
-            <li className="nav__item">
-              <div className="dropdown">
-                <Link href="/account">
-                  <a className="nav__link"><AccountCircleOutlinedIcon /></a>
-                </Link>
-                <div className="dropdown-content">
-                  <a href="/login">Login</a>
-                  <a href="/register">Create an account</a>
-                </div>
-              </div>
-            </li>
+            {isLogged ?
+              (
+                <li className="nav__item">
+                  <Link href="/account">
+                    <a className="nav__link"><AccountCircleOutlinedIcon /></a>
+                  </Link>
+                </li>
+              )
+              :
+              (
+                <>
+                  <li className="nav__item">
+                    <Link href="/login">
+                      {router.asPath === "/login" ?
+                        (<a className="nav__link__colored">Login</a>)
+                        :
+                        (<a className="nav__link">Login</a>)}
+                    </Link>
+                  </li>
+                  <li className="nav__item">
+                    <Link href="/register">
+                      {router.asPath === "/register" ?
+                        (<a className="nav__link__colored">Register</a>)
+                        :
+                        (<a className="nav__link" >Register</a>)}
+                    </Link>
+                  </li>
+                </>
+              )}
           </ul>
         </nav>
       </header>

@@ -4,7 +4,6 @@ import Logo from "../public/alpaga-icon.png";
 import AlpaClothes from "../public/AlpaClothes.jpg";
 import ShoppingBagOutlinedIcon from '@mui/icons-material/ShoppingBagOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined';
 import { useRouter } from "next/router";
 
 const Header = () => {
@@ -57,23 +56,22 @@ const Header = () => {
                   (<a className="nav__link">Shop</a>)}
               </Link>
             </li>
-            <li className="nav__item">
-              <Link href="/about">
-                {router.asPath === "/about" ?
-                  (<a className="nav__link__colored">About</a>)
+            <li className="dropdown nav__item">
+              <div>
+                {router.asPath === "/admin/users" || router.asPath === "/admin/products" ?
+                  (<a className="nav__link__colored">Admin</a>)
                   :
-                  (<a className="nav__link">About</a>)}
-              </Link>
+                  (<a className="nav__link">Admin</a>)}
+              </div>
+              <div class="dropdown-content">
+                <a href="/admin/users">Users</a>
+                <a href="/admin/products">Products</a>
+              </div>
             </li>
           </ul>
         </nav>
         <nav className="header__nav">
           <ul className="nav__list">
-            <li className="nav__item">
-              <Link href="/search">
-                <a className="nav__link"><SearchOutlinedIcon /></a>
-              </Link>
-            </li>
             <li className="nav__item">
               <Link href="/cart">
                 <a className="nav__link"><ShoppingBagOutlinedIcon /></a>

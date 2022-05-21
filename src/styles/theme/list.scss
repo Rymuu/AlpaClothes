@@ -1,0 +1,23 @@
+.list__container {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    border: 1px solid #ccc;
+
+    .list {
+        &__data {
+            margin: 35px;
+        }
+        &__button {
+            position: absolute;
+            right: 0%;
+            margin: 35px;
+            margin-top: 65px;
+        }
+    }
+
+    img {
+        width: 100px;
+        margin: 20px;
+    }
+}

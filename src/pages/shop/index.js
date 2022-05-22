@@ -37,8 +37,7 @@ const Index = () => {
       setIsSearch(false);
     }
   }
-  useEffect(() => {
-
+  useEffect(() => { 
     console.log(productSearch);
   }, [productSearch]);
 
@@ -47,11 +46,9 @@ const Index = () => {
       <div className="shop__container__top">
         <div className="search__container">
           <div className="search__input">
-            <input type="text" id="search" name="search" required="" placeholder="Search here" class="searchbar" onChange={(e) => {
-              setTimeout(() => {
-                search(e)
-              }, 1000)
-            }}>
+            <input type="text" id="search" name="search" required="" placeholder="Search here" className="searchbar" onChange={(e) => {setTimeout(() => {
+              search(e)
+            }, 1500)}}>
             </input>
             <SearchOutlinedIcon className="search__icon"/>
           </div>

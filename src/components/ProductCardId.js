@@ -53,6 +53,17 @@ const ProductCardId = (props) => {
                     <h1>{props.product && props.product.nom}</h1>
                     <ProductPrice price={props.product && props.product.prix} currency="€" />
                     <p>{props.product && props.product.description}</p>
+                    <p>Color : {props.product && props.product.couleur}</p>
+                    <label>Size : </label>
+                    <select name="Size" id="size">
+                        <option value="small">S</option>
+                        <option value="medium">M</option>
+                        <option value="large">L</option>
+                        <option value="extra-large">XL</option>
+                    </select>
+                    <br/>
+                    <p>Material : Cotton</p>
+                    <p>Style : Casual</p>
                     <Button
                         type="button"
                         classes="btn btn__color-black"

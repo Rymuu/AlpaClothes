@@ -33,19 +33,18 @@ const Index = () => {
 
   useEffect(() => {
     const getCommande = () =>{
-      let jwt = localStorage.getItem("jwt");
       const result = axios.get("http://localhost:8000/client/commande",{
         headers: {
-          Authorization : `Bearer ${jwt}`
+          Authorization : `Bearer ${user.jwt}`
         }
       }).then((res)=>{
         setUserCommande(res.data.data)
-        console.log(userCommande);
+        setloading(false)
       })
     }
     if(loading === true){
       getCommande();
-      setloading(false)
+      
     }
   }, [user,loading,userCommande]);
 

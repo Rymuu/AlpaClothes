@@ -61,11 +61,17 @@ const Index = () => {
         <p>Popular filter :</p>
         <div className="filter__container">
           <select className="select-filter" name="colors" id="color-select">
-            <option value="">Colors</option>
+            <option value="">All Colors</option>
             <option value="blue">Blue</option>
             <option value="red">Red</option>
             <option value="white">White</option>
             <option value="black">Black</option>
+            <option value="yellow">Yellow</option>
+            <option value="green">Green</option>
+            <option value="brown">Brown</option>
+            <option value="pink">Pink</option>
+            <option value="purple">Purple</option>
+            <option value="multicolor">Multicolor</option>
           </select>
           <select className="select-filter" name="size" id="size-select">
             <option value="">Size</option>
@@ -76,15 +82,17 @@ const Index = () => {
             <option value="xl">XL</option>
           </select>
           <select className="select-filter" name="category" id="category-select">
-            <option value="">Category</option>
-            <option value="coat">Coat</option>
-            <option value="hoodie">Hoodie</option>
-            <option value="jean">Jean</option>
-            <option value="dress">Dress</option>
+            <option value="">All Categories</option>
+            <option value="shirt">Shirts</option>
+            <option value="hoodie">Sweaters</option>
+            <option value="jean">Jeans</option>
+            <option value="dress">Dresses</option>
+            <option value="skirt">Skirts</option>
             <option value="shoes">Shoes</option>
+            <option value="accessories">Accessories</option>
           </select>
           <select className="select-filter" name="section" id="section-select">
-            <option value="">Section</option>
+            <option value="">All Sections</option>
             <option value="kids">Kids</option>
             <option value="men">Men</option>
             <option value="women">Women</option>

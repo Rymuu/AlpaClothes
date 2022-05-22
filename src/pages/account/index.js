@@ -39,12 +39,14 @@ const Index = () => {
         }
       }).then((res)=>{
         setUserCommande(res.data.data)
+        setloading(false)
       })
     }
     if(loading === true){
       getCommande();
-      setloading(false)
+      
     }
+    console.log(user)
   }, [user,loading,userCommande]);
 
   return (

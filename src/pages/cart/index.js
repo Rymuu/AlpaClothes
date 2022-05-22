@@ -61,16 +61,18 @@ const Index = () => {
             panierArray[key]= [object[key].id,object[key].quantity]
         });
         formData.append("panier", panierArray)
+        console.log(panierArray);
       return formData;
   }
 
   const paidCart = () => {
+    let jwt = localStorage.getItem("jwt");
     let panier = JSON.parse(localStorage.getItem("cart"))
     var formData = getFormData(panier);
     formData.append("prix",totalAmount())
     axios.post("http://localhost:8000/commande/add",formData,{
       headers : {
-      Authorization : `Bearer ${state.jwt}`
+      Authorization : `Bearer ${jwt}`
       }
     }).then().catch((error) =>{
       console.log(error.response)

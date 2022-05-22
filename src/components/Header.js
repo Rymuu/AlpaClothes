@@ -63,7 +63,7 @@ const Header = () => {
                   :
                   (<a className="nav__link">Admin</a>)}
               </div>
-              <div class="dropdown-content">
+              <div className="dropdown-content">
                 <a href="/admin/users">Users</a>
                 <a href="/admin/products">Products</a>
               </div>

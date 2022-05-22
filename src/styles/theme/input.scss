@@ -70,3 +70,13 @@
         height: 40px;
     }
 }
+
+.search__input {
+    display: flex;
+    flex-wrap: wrap;
+    .search__icon {
+        position: absolute;
+        right: 400px;
+        margin-top: 10px;
+    }
+}

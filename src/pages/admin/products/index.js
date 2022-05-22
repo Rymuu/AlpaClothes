@@ -16,7 +16,7 @@ const Index = () => {
       .catch(err => console.log(err))
 
 
-  }, []);
+  }, [products]);
   return (
     <div>
       <br />

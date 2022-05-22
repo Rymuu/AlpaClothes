@@ -1,7 +1,40 @@
 
+import axios from 'axios';
 import { useRouter } from 'next/router';
+import { useContext,useState,useEffect } from 'react';
+import UserContext from '../User/UserContext';
 const List = (props) => {
     const router = useRouter();
+    const user = useContext(UserContext);
+    const [isActive, setIsActive] = useState(props.user.active);
+
+    const removeProduct = (product)=>{
+        let jwt = localStorage.getItem("jwt");
+        const result = axios.get(`http://localhost:8000/admin/remove/${product.id}`,{
+            headers: {
+                Authorization : `Bearer ${jwt}`
+              }
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
+
+    const activeUser = (user)=>{
+        let jwt = localStorage.getItem("jwt");
+        let formData = new FormData();
+        formData.append("active",!isActive); 
+        const result = axios.post(`http://localhost:8000/admin/active/${user.id}`,formData,{
+            headers: {
+                Authorization : `Bearer ${jwt}`
+              }
+        }).then(()=>{
+            setIsActive(!isActive)
+        }).catch((error)=>{
+            console.log(error);
+        })
+    }
+    useEffect(() => {
+    }, [isActive]);
     return (
         <>
             {router.asPath === "/admin/products" ?
@@ -29,7 +62,7 @@ const List = (props) => {
                                 </div>
                                 <div className="list__button">
                                     <button className="btn btn__color-black" onClick={() => router.push(`/admin/products/update/${props.product.id}`)}>Modify</button>
-                                    <button className="btn btn__color-black">Delete</button>
+                                    <button className="btn btn__color-black" onClick={() => removeProduct(props.product)}>Delete</button>
                                 </div>
                             </div>
                         </div>
@@ -55,7 +88,7 @@ const List = (props) => {
                                 <p className="list__value">{props.user.email}</p>
                             </div>
                             <div className="list__button">
-                                <button className="btn btn__color-black">Deactivate</button>
+                                <button className="btn btn__color-black" onClick={()=>{activeUser(props.user)}}>{isActive === true?(<>Deactivate</>):(<>activate</>)}</button>
                             </div>
                         </div>
                     </div>

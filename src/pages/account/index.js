@@ -45,7 +45,6 @@ const Index = () => {
       getCommande();
       setloading(false)
     }
-    console.log(userCommande);
   }, [user,loading,userCommande]);
 
   return (

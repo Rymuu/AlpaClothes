@@ -68,7 +68,6 @@ const Index = () => {
     let panier = JSON.parse(localStorage.getItem("cart"))
     var formData = getFormData(panier);
     formData.append("prix",totalAmount())
-    console.log(state);
     axios.post("http://localhost:8000/commande/add",formData,{
       headers : {
       Authorization : `Bearer ${state.jwt}`

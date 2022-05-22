@@ -58,7 +58,6 @@ const Index = () => {
           
           <select className="select-filter" name="filter" id="filter-select">
             <option value="">Asc</option>
-            <option value="asc">Asc</option>
             <option value="dsc">Dsc</option>
           </select>
         </div>

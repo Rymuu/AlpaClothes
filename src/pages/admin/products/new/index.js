@@ -55,7 +55,9 @@ const Index = () => {
 
           <select onChange={(e) => setProduct({ ...product, categorie: e.target.value })} name="category" id="categories">
             <option value="shoes">Shoes</option>
-            <option value="pants/Skirts/Dresses">Pants/Skirts/Dresses</option>
+            <option value="pants">Pants</option>
+            <option value="skirts">Skirts</option>
+            <option value="dresses">Dresses</option>
             <option value="accessories">Accessories</option>
             <option value="shirt">Shirt</option>
             <option value="hoodie">Hoodie</option>

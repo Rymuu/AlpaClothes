@@ -11,6 +11,19 @@ const Index = () => {
   const [loading, setLoading] = useState(true);
   const [isSearch, setIsSearch] = useState(false);
 
+  const handleFilter = (e,filterType) => {
+    let formData = new FormData();
+    formData.append(filterType,e.target.value)
+    const result = axios.post("http://localhost:8000/produit/filtre",formData)
+    .then((res)=>{
+      setProducts(res.data.data[0])
+    })
+      .catch((error)=>{
+      console.log(error)
+    })
+  }
+ 
+
   useEffect(() => {
     if (isSearch === false) {
       productService.getProducts()
@@ -20,7 +33,6 @@ const Index = () => {
         })
         .catch(err => console.log(err))
     }
-
   }, [isSearch]);
 
   const search = (e) => {
@@ -53,21 +65,21 @@ const Index = () => {
             <SearchOutlinedIcon className="search__icon"/>
           </div>
           
-          <select className="select-filter" name="filter" id="filter-select">
+          <select className="select-filter" name="filter" id="filter-select" onChange={(e)=>handleFilter(e,"ordre")}>
             <option value="">Asc</option>
             <option value="dsc">Dsc</option>
           </select>
         </div>
         <p>Popular filter :</p>
         <div className="filter__container">
-          <select className="select-filter" name="colors" id="color-select">
+          <select className="select-filter" name="colors" id="color-select" onChange={(e)=>handleFilter(e,"couleur")}>
             <option value="">Colors</option>
-            <option value="blue">Blue</option>
+            <option value="vert">Green</option>
             <option value="red">Red</option>
             <option value="white">White</option>
             <option value="black">Black</option>
           </select>
-          <select className="select-filter" name="size" id="size-select">
+          <select className="select-filter" name="size" id="size-select" onChange={(e)=>handleFilter(e,"taille")}>
             <option value="">Size</option>
             <option value="xs">XS</option>
             <option value="s">S</option>
@@ -75,7 +87,7 @@ const Index = () => {
             <option value="l">L</option>
             <option value="xl">XL</option>
           </select>
-          <select className="select-filter" name="category" id="category-select">
+          <select className="select-filter" name="category" id="category-select" onChange={(e)=>handleFilter(e,"categorie")}>
             <option value="">Category</option>
             <option value="coat">Coat</option>
             <option value="hoodie">Hoodie</option>
@@ -83,11 +95,11 @@ const Index = () => {
             <option value="dress">Dress</option>
             <option value="shoes">Shoes</option>
           </select>
-          <select className="select-filter" name="section" id="section-select">
+          <select className="select-filter" name="section" id="section-select" onChange={(e)=>handleFilter(e,"section")}>
             <option value="">Section</option>
-            <option value="kids">Kids</option>
-            <option value="men">Men</option>
-            <option value="women">Women</option>
+            <option value={9}>Kids</option>
+            <option value={7}>Men</option>
+            <option value={8}>Women</option>
           </select>
         </div>
       </div>

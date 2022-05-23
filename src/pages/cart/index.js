@@ -63,17 +63,17 @@ const Index = () => {
   }
 
   const getFormData = (object) => {
-      const formData = new FormData();
-      let panierArray = [];
-      Object.keys(object).forEach(key => {
-            //panierArray[key]= [object[key].id,object[key].quantity]
-            formData.append(`panier[${[key]}][produit]`, object[key].id)
-            formData.append(`panier[${[key]}][size]`, object[key].size)
-            formData.append(`panier[${[key]}][qte]`, object[key].quantity)
-        });
-        
-        console.log(panierArray);
-      return formData;
+    const formData = new FormData();
+    let panierArray = [];
+    Object.keys(object).forEach(key => {
+      //panierArray[key]= [object[key].id,object[key].quantity]
+      formData.append(`panier[${[key]}][produit]`, object[key].id)
+      formData.append(`panier[${[key]}][size]`, object[key].size)
+      formData.append(`panier[${[key]}][qte]`, object[key].quantity)
+    });
+
+    console.log(panierArray);
+    return formData;
   }
 
   const paidCart = () => {
@@ -86,9 +86,12 @@ const Index = () => {
       headers: {
         Authorization: `Bearer ${jwt}`
       }
-    }).then().catch((error) => {
+    })
+    .then()
+    .catch((error) => {
       console.log(error.response)
     })
+
   }
 
   return (
@@ -97,20 +100,20 @@ const Index = () => {
         <>
           <Modal title="Payment Success !" isActive={showModal} isInfo={false} closefunction={() => setShowModal(!showModal)}>
             <center>
-              <p>Your payment has been approuved, you will be redirected to your account.</p>
+              <p>Your payment has been approuved.</p>
               <div className="buttons">
                 <button
                   type="button"
                   className="btn btn__color-black"
                   onClick={() => { router.push("/shop") }}
-                  style={{ borderRadius: "4px" , margin:"20px"}}>
+                  style={{ borderRadius: "4px", margin: "20px" }}>
                   Continue Shopping <ShoppingCartOutlinedIcon />
                 </button>
                 <button
                   type="button"
                   className="btn btn__color-black"
                   onClick={() => { router.push("/account") }}
-                  style={{ borderRadius: "4px" , margin:"20px"}}>
+                  style={{ borderRadius: "4px", margin: "20px" }}>
                   See My Orders <ShoppingBasketOutlinedIcon />
                 </button>
               </div>
@@ -133,7 +136,7 @@ const Index = () => {
                     </div>
                     <div className="about">
                       <h2 className="title">{cartItem.nom}</h2>
-                      <h3 className="subtitle">{cartItem.couleur}</h3>
+                      <h3 className="color">{cartItem.couleur}</h3>
                       <h3 className="subtitle">XS</h3>
                     </div>
                     <div className="counter">
@@ -163,7 +166,16 @@ const Index = () => {
           </div >
         </>
       ) : (
-        <p className="text__center">Votre panier est vide</p>
+        <>
+          <div className="body">
+            <div className="Cart-Container">
+              <div className="Header__cart">
+                <h3 className="Heading">Shopping Cart</h3>
+              </div>
+              <p className="text__center">Your cart is empty.</p>
+            </div >
+          </div>
+        </>
       )}
     </div >
   );

@@ -24,7 +24,7 @@ const Index = () => {
   }, []);
 
   const decrementQty = (product) => {
-    const indexOfExistingProduct = cart.findIndex((el) => el.id === product.id);
+    const indexOfExistingProduct = cart.findIndex((el) => el.id === product.id && el.size.size === product.size.size);
     if (indexOfExistingProduct !== -1 && cart[indexOfExistingProduct].quantity > 1) {
       cart[indexOfExistingProduct].quantity -= 1;
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -32,7 +32,7 @@ const Index = () => {
     }
   };
   const incrementQty = (product) => {
-    const indexOfExistingProduct = cart.findIndex((el) => el.id === product.id);
+    const indexOfExistingProduct = cart.findIndex((el) => el.id === product.id && el.size.size === product.size.size);
     if (indexOfExistingProduct !== -1) {
       cart[indexOfExistingProduct].quantity += 1;
     }

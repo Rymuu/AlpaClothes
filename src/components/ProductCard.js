@@ -30,7 +30,7 @@ const Productcard = (props) => {
       localStorageCart.forEach(product => {
         cartArray.push(product);
       });
-      const indice = cartArray.findIndex((product) => product.id === productToInsert.id)
+      const indice = cartArray.findIndex((product) => product.id === productToInsert.id && product.size.size == productToInsert.size.size)
       //si le produit est déjà dans le panier
       if (indice !== -1) {
         productToInsert = cartArray[indice];

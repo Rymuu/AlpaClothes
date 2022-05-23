@@ -40,7 +40,6 @@ const List = (props) => {
             setIsActive(props.user.active)
             setLoading(false)
         }
-        console.log(props.product.stockTailles[randomTaille]?.qte)
     }, [loading,isActive]);
     return (
         <>

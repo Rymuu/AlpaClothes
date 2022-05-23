@@ -66,9 +66,10 @@ const Index = () => {
       const formData = new FormData();
       let panierArray = [];
       Object.keys(object).forEach(key => {
+            console.log(object);
             //panierArray[key]= [object[key].id,object[key].quantity]
             formData.append(`panier[${[key]}][produit]`, object[key].id)
-            formData.append(`panier[${[key]}][size]`, object[key].size)
+            formData.append(`panier[${[key]}][size]`, object[key].size.size)
             formData.append(`panier[${[key]}][qte]`, object[key].quantity)
         });
         
@@ -124,8 +125,8 @@ const Index = () => {
               </div>
               {cart &&
                 cart.map((cartItem) => (
-
-                  <div className="Cart-Items">
+                  
+                  <div className="Cart-Items">{console.log(cartItem)}
                     <div className="image-box">
                       <Link href={`/shop/product/${cartItem.id}`}>
                         <img src={`${cartItem.image}`} alt={cartItem.nom} />
@@ -134,7 +135,7 @@ const Index = () => {
                     <div className="about">
                       <h2 className="title">{cartItem.nom}</h2>
                       <h3 className="subtitle">{cartItem.couleur}</h3>
-                      <h3 className="subtitle">XS</h3>
+                      <h3 className="subtitle">{cartItem.size.libelle}</h3>
                     </div>
                     <div className="counter">
                       <div className="btn__cart" onClick={() => decrementQty(cartItem)}>-</div>

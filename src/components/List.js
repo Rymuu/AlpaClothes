@@ -6,7 +6,8 @@ import UserContext from '../User/UserContext';
 const List = (props) => {
     const router = useRouter();
     const user = useContext(UserContext);
-    const [isActive, setIsActive] = useState(props.user.active);
+    const [loading, setLoading] = useState(true);
+    const [isActive, setIsActive] = useState(false);
 
     const removeProduct = (product)=>{
         let jwt = localStorage.getItem("jwt");
@@ -34,7 +35,11 @@ const List = (props) => {
         })
     }
     useEffect(() => {
-    }, [isActive]);
+        if(router.asPath === "/admin/users" && loading === true){
+            setIsActive(props.user.active)
+            setLoading(false)
+        }
+    }, [loading,isActive]);
     return (
         <>
             {router.asPath === "/admin/products" ?

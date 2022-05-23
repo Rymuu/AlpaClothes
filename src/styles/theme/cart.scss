@@ -1,103 +1,96 @@
-.product__cart {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-
-    .product__img {
-        width: 50px;
-        margin: 20px;
-        height: auto;
-
-        .product__data {
-            h2 {
-                font-size: 15px;
-            }
-        }
-
-        .product__price {
-            font-weight: bold;
-        }
-    }
-}
-
-
 .page__cart {
     img {
         width: 100px;
         cursor: pointer;
     }
-    .body{
+
+    .body {
         margin: 0;
         padding: 0;
         background: linear-gradient(to bottom right, #E3F0FF, #FAFCFF);
-        height: 100vh;
+        height: 200vh;
         display: flex;
         justify-content: center;
         align-items: center;
-       }
-       .Cart-Container{
+    }
+
+    .Cart-Container {
+        position: absolute;
+        top: 100px;
         width: 70%;
         height: fit-content;
         background-color: #ffffff;
         border-radius: 20px;
         box-shadow: 0px 25px 40px #1687d933;
         padding-bottom: 20px;
-       }
-       .Header__cart{
+    }
+
+    .Header__cart {
         margin: auto;
         width: 90%;
         height: 15%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-       }
-       .Heading{
+    }
+
+    .Heading {
         font-size: 20px;
         font-weight: 700;
         color: #2F3841;
-       }
-       .Action{
+    }
+
+    .Action {
         font-size: 14px;
         font-weight: 600;
         color: #E44C4C;
         cursor: pointer;
         border-bottom: 1px solid #E44C4C;
-       }
-       .Cart-Items{
+    }
+
+    .Cart-Items {
         margin: auto;
         width: 90%;
         height: 30%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-       }
-       .image-box{
+    }
+
+    .image-box {
         width: 15%;
         text-align: center;
-       }
-       .about{
+    }
+
+    .about {
         height: 100%;
-       }
-       .title{
+        text-align: left;
+    }
+
+    .title {
         padding-top: 5px;
         line-height: 10px;
         font-size: 32px;
-        font-weight: 800;
+        font-weight: 600;
         color: #202020;
-       }
-       .subtitle{
+        
+    }
+
+    .subtitle {
         line-height: 10px;
         font-size: 18px;
         font-weight: 600;
         color: #909090;
-       }
-       .counter{
+    }
+
+    .counter {
         width: 15%;
         display: flex;
         justify-content: space-between;
         align-items: center;
-       }
-       .btn{
+    }
+
+    .btn__cart {
         width: 40px;
         height: 40px;
         border-radius: 50%;
@@ -109,68 +102,80 @@
         font-weight: 900;
         color: #202020;
         cursor: pointer;
-       }
-       .count{
+    }
+
+    .count {
         font-size: 20px;
         font-weight: 900;
         color: #202020;
-       }
-       .prices{
+    }
+
+    .prices {
         height: 100%;
         text-align: right;
-       }
-       .amount{
+    }
+
+    .amount {
         padding-top: 20px;
         font-size: 26px;
-        font-weight: 800;
+        font-weight: 600;
         color: #202020;
-       }
-       .save{
+    }
+
+    .save {
         padding-top: 5px;
         font-size: 14px;
         font-weight: 600;
         color: #1687d9;
         cursor: pointer;
-       }
-       .remove{
+    }
+
+    .remove {
         padding-top: 5px;
         font-size: 14px;
         font-weight: 600;
         color: #E44C4C;
         cursor: pointer;
-       }
-       hr{
+    }
+
+    hr {
         width: 66%;
         float: right;
         margin-right: 5%;
-       }
-       .checkout{
+    }
+
+    .checkout {
         float: right;
         margin-right: 5%;
         width: 28%;
-       }
-       .total{
+    }
+
+    .total {
         width: 100%;
         display: flex;
         justify-content: space-between;
-       }
-       .Subtotal{
+    }
+
+    .Subtotal {
         font-size: 22px;
         font-weight: 700;
         color: #202020;
-       }
-       .items{
+    }
+
+    .items {
         font-size: 16px;
         font-weight: 500;
         color: #909090;
         line-height: 10px;
-       }
-       .total-amount{
+    }
+
+    .total-amount {
         font-size: 36px;
         font-weight: 900;
         color: #202020;
-       }
-       .button{
+    }
+
+    .button {
         margin-top: 5px;
         width: 100%;
         height: 40px;
@@ -181,6 +186,10 @@
         font-size: 16px;
         font-weight: 600;
         color: #202020;
-       }
+    }
 }
 
+.buttons {
+    display: flex;
+    flex-wrap: wrap;
+}

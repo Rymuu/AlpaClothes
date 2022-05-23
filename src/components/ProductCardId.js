@@ -6,7 +6,10 @@ import ProductPrice from "./ProductPrice";
 
 const ProductCardId = (props) => {
     console.log(props.product)
-    const [size, setSize] = useState(1);
+    const [size, setSize] = useState({
+        size: 1,
+        libelle:"S",
+    });
     const addTocart = (element) => {
     console.log(size);
     console.log(props.product)
@@ -58,7 +61,7 @@ const ProductCardId = (props) => {
                     <p>{props.product && props.product.description}</p>
                     <p>Color : {props.product && props.product.couleur}</p>
                     <label>Size : </label>
-                    <select className="size" onChange={(e)=>{setSize(e.target.value)}}>{props.product?.stockTailles.map((taille)=>{return <option value={taille.taille.id}>{taille.taille.libelle}</option>})}</select>
+                    <select className="size" onChange={(e)=>{ setSize({size: e.target.value, libelle: e.target.options[e.target.selectedIndex].text})}}>{props.product?.stockTailles.map((taille)=>{return <option value={taille.taille.id}>{taille.taille.libelle}</option>})}</select>
                     <br/>
                     <p>Material : Cotton</p>
                     <p>Style : Casual</p>

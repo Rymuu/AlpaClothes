@@ -103,7 +103,7 @@ const Index = () => {
                                         <div className="about">
                                             <h1 className="title">{cartItem.nom}</h1>
                                             <h3 className="subtitle">{cartItem.couleur}</h3>
-                                            <h3 className="subtitle">{cartItem.size}</h3>
+                                            <h3 className="subtitle">{cartItem.size.libelle}</h3>
                                         </div>
                                         <div className="counter">
                                             <div className="btn" onClick={() => decrementQty(cartItem)}>-</div>

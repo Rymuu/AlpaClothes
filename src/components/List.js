@@ -8,6 +8,7 @@ const List = (props) => {
     const user = useContext(UserContext);
     const [loading, setLoading] = useState(true);
     const [isActive, setIsActive] = useState(false);
+    const randomTaille = Math.floor(Math.random() * 4)
 
     const removeProduct = (product)=>{
         let jwt = localStorage.getItem("jwt");
@@ -55,11 +56,12 @@ const List = (props) => {
                                 </div>
                                 <div className="list__data">
                                     <h2 className="list__title">Color</h2>
-                                    <p className="list__price">Blue</p>
+                                    <p className="list__price">{props.product.couleur}</p>
                                 </div>
                                 <div className="list__data">
                                     <h2 className="list__title">Size</h2>
-                                    <p className="list__price">XS</p>
+                                    
+                                    <p className="list__price">{props.product.stockTailles[randomTaille]?.taille.libelle}</p>
                                 </div>
                                 <div className="list__data">
                                     <h2 className="list__title">Availability</h2>

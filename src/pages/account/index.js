@@ -56,7 +56,7 @@ const Index = () => {
     <Button type="button"
           classes="btn btn__color-black"
           function={logout}
-          title="Déconnexion" />
+          title="Logout" />
     <div>
         <table>
           <thead>

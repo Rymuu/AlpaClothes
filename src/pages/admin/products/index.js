@@ -18,9 +18,6 @@ const Index = () => {
       })
       .catch(err => console.log(err))
     }
-   
-
-
   }, [loading]);
   return (
     <div>

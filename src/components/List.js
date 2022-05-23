@@ -40,6 +40,7 @@ const List = (props) => {
             setIsActive(props.user.active)
             setLoading(false)
         }
+        console.log(props.product.stockTailles[randomTaille]?.qte)
     }, [loading,isActive]);
     return (
         <>
@@ -65,7 +66,8 @@ const List = (props) => {
                                 </div>
                                 <div className="list__data">
                                     <h2 className="list__title">Availability</h2>
-                                    <p className="list__price">In stock</p>
+                                    <p className="list__price">{props.product.stockTailles[randomTaille]?.qte === 0?(<>sold out</>):(<>In stock</>)
+                                    }</p>
                                 </div>
                                 <div className="list__button">
                                     <button className="btn btn__color-black" onClick={() => router.push(`/admin/products/update/${props.product.id}`)}>Modify</button>

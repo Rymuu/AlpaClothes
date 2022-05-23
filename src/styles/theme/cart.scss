@@ -34,3 +34,10 @@
         width: 100%;
     }
 }
+.container_price_size{
+    display: flex;
+    justify-content: space-between;
+    .size{
+        height: 32px;
+    }
+}

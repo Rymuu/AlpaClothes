@@ -1,22 +1,25 @@
 import Link from "next/link";
+import {React,useState} from "react";
 import Button from "./Button";
 import ProductPrice from "./ProductPrice";
 
+
 const ProductCardId = (props) => {
     console.log(props.product)
-
+    const [size, setSize] = useState(1);
     const addTocart = (element) => {
-        console.log(props.product)
+    console.log(size);
+    console.log(props.product)
 
-        let productToInsert = {
-            nom: element.nom,
-            id: element.id,
-            prix: element.prix,
-            image: element.image,
-            quantity: 1
+    let productToInsert = {
+      nom: element.nom,
+      id: element.id,
+      prix: element.prix,
+      image: element.image,
+      size: size,
+      quantity: 1
 
-        };
-
+    };
         const cartArray = [];
 
         //si j'ai déjà un ou des produit dans le localstorage
@@ -55,12 +58,7 @@ const ProductCardId = (props) => {
                     <p>{props.product && props.product.description}</p>
                     <p>Color : {props.product && props.product.couleur}</p>
                     <label>Size : </label>
-                    <select name="Size" id="size">
-                        <option value="small">S</option>
-                        <option value="medium">M</option>
-                        <option value="large">L</option>
-                        <option value="extra-large">XL</option>
-                    </select>
+                    <select className="size" onChange={(e)=>{setSize(e.target.value)}}>{props.product?.stockTailles.map((taille)=>{return <option value={taille.taille.id}>{taille.taille.libelle}</option>})}</select>
                     <br/>
                     <p>Material : Cotton</p>
                     <p>Style : Casual</p>

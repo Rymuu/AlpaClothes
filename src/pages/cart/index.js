@@ -56,11 +56,14 @@ const Index = () => {
   
   const getFormData = (object) => {
       const formData = new FormData();
-      let panierArray = new Array(1);
+      let panierArray = [];
       Object.keys(object).forEach(key => {
-            panierArray[key]= [object[key].id,object[key].quantity]
+            //panierArray[key]= [object[key].id,object[key].quantity]
+            formData.append(`panier[${[key]}][produit]`, object[key].id)
+            formData.append(`panier[${[key]}][size]`, object[key].size)
+            formData.append(`panier[${[key]}][qte]`, object[key].quantity)
         });
-        formData.append("panier", panierArray)
+        
         console.log(panierArray);
       return formData;
   }

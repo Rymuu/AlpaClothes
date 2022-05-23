@@ -6,8 +6,7 @@ import RecImageSlider from "../../../../components/RecommandationSlider";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import axios from "axios";
-import ProductCardSlider from '../../../../components/ProductCardSlider';
-
+import ProductCardSlider from "../../../../components/ProductCardSlider";
 
 const Index = () => {
   const router = useRouter();
@@ -66,26 +65,20 @@ const Index = () => {
     <div className="product_page">
       <ProductCardId
         product={product && product} key={product && product.id} />
-      <Carousel
-        swipeable={false}
-        draggable={false}
-        showDots={false}
-        responsive={responsive}
-        ssr={true}
-        infinite={true}
-        autoPlay={false}
-        shouldResetAutoplay={false}
-        keyBoardControl={true}
-        removeArrowOnDeviceType={["tablet", "mobile"]}
-        itemClass="list_movies carousel-item-padding-5-px">
-        <div className="products__grid">
-              {products &&
-                products.map((product) => 
-                {
-                  return <ProductCardSlider product={product} key={product.id} />
-                })}
-          </div>
-      </Carousel>;
+      <h2 className="similar__outfits">Similar outfits :</h2>
+      {products &&
+        <Carousel
+          responsive={responsive}
+          autoPlay={false}
+          shouldResetAutoplay={false}
+          infinite={true}
+          className="container"
+        >
+          {products.map((product) => {
+            return (<ProductCardSlider product={product} key={product.id} />)
+          })}
+        </Carousel>}
+
     </div>
   );
 };

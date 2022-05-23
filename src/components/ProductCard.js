@@ -14,6 +14,7 @@ const Productcard = (props) => {
       prix: element.prix,
       image: element.image,
       size: size,
+      couleur: element.couleur,
       quantity: 1
 
     };

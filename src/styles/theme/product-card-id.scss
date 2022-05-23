@@ -14,17 +14,20 @@
     }
 }
 
+.similar__outfits {
+    margin-left: 50px;
+}
+
 .product__slider__card {
     border: 1px solid #ccc;
     margin: 20px;
     grid-column: span 1;
     grid-row: span 1;
-
     .product__slider__img {
         img {
             cursor: pointer;
-            width: 300px;
-            height: 350px;
+            width: 464px;
+            height: auto;
         }
     }
 

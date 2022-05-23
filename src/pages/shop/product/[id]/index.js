@@ -11,18 +11,22 @@ import ProductCardSlider from "../../../../components/ProductCardSlider";
 const Index = () => {
   const router = useRouter();
   const [product, setProduct] = useState();
+  const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState();
 
   useEffect(() => {
     const id = router.query.id;
-
-    productService.getProduct(id)
+    if(loading === true){
+      productService.getProduct(id)
       .then((data) => {
         setProduct(data.data[0]);
+        setLoading(false)
         console.log("the data", data.data[0]);
       })
       .catch(err => console.log(err))
-  }, []);
+    }
+    
+  }, [loading]);
 
   useEffect(() => {
     let formData = new FormData();

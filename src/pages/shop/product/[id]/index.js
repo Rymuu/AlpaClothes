@@ -13,9 +13,10 @@ const Index = () => {
   const [product, setProduct] = useState();
   const [loading, setLoading] = useState(true);
   const [products, setProducts] = useState();
-
+  const id = router.query.id;
+  
   useEffect(() => {
-    const id = router.query.id;
+    
     if(loading === true){
       productService.getProduct(id)
       .then((data) => {

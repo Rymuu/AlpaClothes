@@ -1,9 +1,11 @@
 import Link from "next/link";
+import {React,useState} from "react";
 import Button from "../components/Button";
 
 const Productcard = (props) => {
-
+  const [size, setSize] = useState(1);
   const addTocart = (element) => {
+    console.log(size);
     console.log(props.product)
 
     let productToInsert = {
@@ -11,6 +13,7 @@ const Productcard = (props) => {
       id: element.id,
       prix: element.prix,
       image: element.image,
+      size: size,
       couleur: element.couleur,
       quantity: 1
 
@@ -44,6 +47,7 @@ const Productcard = (props) => {
       localStorage.setItem('cart', JSON.stringify(cartArray));
     }
   };
+
   return (
     <div className="product__card">
       <div className="product__img">
@@ -53,7 +57,8 @@ const Productcard = (props) => {
       </div>
       <div className="product__data">
         <h2>{props.product.nom}</h2>
-        <p>{props.product.prix} € </p>
+        <div className="container_price_size"><p>{props.product.prix} € </p>
+        <select className="size" onChange={(e)=>{setSize(e.target.value)}}>{props.product.stockTailles?.map((taille)=>{return <option value={taille.taille.id}>{taille.taille.libelle}</option>})}</select></div>
       </div>
       <div className="product__button">
         <Button title="ajouter au panier" function={() => addTocart(props.product)} type="button" classes="btn btn__color-black-long" />

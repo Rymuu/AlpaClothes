@@ -73,7 +73,7 @@
         font-size: 32px;
         font-weight: 600;
         color: #202020;
-        
+
     }
 
     .subtitle {
@@ -192,4 +192,15 @@
 .buttons {
     display: flex;
     flex-wrap: wrap;
+}
+
+
+
+.container_price_size {
+    display: flex;
+    justify-content: space-between;
+
+    .size {
+        height: 32px;
+    }
 }

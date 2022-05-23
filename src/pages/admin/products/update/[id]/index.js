@@ -1,6 +1,6 @@
 import React, { useState, useContext,useEffect } from "react";
-import Input from "../../../../components/Input";
-import Button from "../../../../components/Button";
+import Input from "../../../../../components/Input";
+import Button from "../../../../../components/Button";
 import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,7 +9,17 @@ import axios from "axios";
 const Index = () => {
 
   const router = useRouter();
-  const [product, setProduct] = useState();
+  const [myProduct, setMyProduct] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [product, setProduct] = useState({
+      nom:"",
+      image:"",
+      prix:"",
+      categorie:"",
+      description:"",
+      couleur:"",
+  });
+  const {id} = router.query;
 
 
   const submitNewProduct = (e) => {
@@ -21,8 +31,7 @@ const Index = () => {
     formData.append("categorie",product.categorie)
     formData.append("description",product.description)
     formData.append("couleur",product.couleur)
-    formData.append("section",product.section)
-    const result = axios.post("http://localhost:8000/produit/add",formData,{
+    const result = axios.post(`http://localhost:8000/produit/edit/${id}`,formData,{
       headers: {
           Authorization : `Bearer ${jwt}`
         }
@@ -34,14 +43,25 @@ const Index = () => {
     e.preventDefault()
   }
   useEffect(() => {
-    
-  }, [product]);
+      if(loading === true){
+        axios.get(`http://localhost:8000/produit/${id}`)
+        .then((res)=>{
+            setMyProduct(res.data.data[0]);
+            setLoading(false);
+        }) .catch((error)=>{
+            console.log(error);
+        })
+      }
+    console.log(myProduct);
+  }, [myProduct,loading]);
+
+
   return (
     <>
       <ToastContainer />
       <div className="newproduct__page">
         <form className="form" onSubmit={(e) => submitNewProduct(e)}>
-          <h1 className="text__center">New product</h1>
+            { loading === false ? (<> <h1 className="text__center">{myProduct.nom}</h1>
           <Input
             label="Name"
             name="name"
@@ -50,6 +70,7 @@ const Index = () => {
             classes="form__input"
             required={true}
             placeholder="Name of the product"
+            defaultValue={myProduct.nom}
             handleChange={(e) => setProduct({ ...product, nom: e.target.value })}
           />
           <Input
@@ -60,6 +81,7 @@ const Index = () => {
             classes="form__input"
             required={true}
             placeholder="Link to the image"
+            defaultValue={myProduct.image}
             handleChange={(e) => setProduct({ ...product, image: e.target.value })}
           />
           <Input
@@ -67,9 +89,11 @@ const Index = () => {
             name="price"
             id="price"
             type="number"
+            step={"any"}
             classes="form__input"
             required={true}
             placeholder="Price"
+            defaultValue={myProduct.prix}
             handleChange={(e) => setProduct({ ...product, prix: e.target.value })}
           />
 
@@ -81,12 +105,13 @@ const Index = () => {
             classes="form__input"
             required={true}
             placeholder="description"
+            defaultValue={myProduct.description}
             handleChange={(e) => setProduct({ ...product, description: e.target.value })}
           />
 
           <label>Category :</label>
 
-          <select onChange={(e) => setProduct({ ...product, categorie: e.target.value })} name="category" id="categories">
+          <select defaultValue={myProduct.categorie.id} onChange={(e) => setProduct({ ...product, categorie: e.target.value })} name="category" id="categories">
             <option value={1}>Shirts</option>
             <option value={3}>Sweaters</option>
             <option value={7}>Jeans</option>
@@ -98,7 +123,7 @@ const Index = () => {
 
           <label>Color :</label>
 
-          <select onChange={(e) => setProduct({ ...product, couleur: e.target.value })} name="color" id="colors">
+          <select defaultValue={myProduct.couleur} onChange={(e) => setProduct({ ...product, couleur: e.target.value })} name="color" id="colors">
             <option value="blue">Blue</option>
             <option value="red">Red</option>
             <option value="white">White</option>
@@ -110,18 +135,11 @@ const Index = () => {
             <option value="purple">Purple</option>
             <option value="multicolor">Multicolor</option>
           </select>
-
-
-          <label>Section :</label> 
-
-          <select onChange={(e) => setProduct({ ...product, section: e.target.value })} name="section" id="section">
-            <option value={1}>Kids</option>
-            <option value={2}>Men</option>
-            <option value={3}>Women</option>
-          </select>
-
+          </>
+          ):(<>loading</>)
+            }
           <br /><br />
-          <center><Button title="Create" classes="btn btn__color-blue-long" type="submit" /></center>
+          <center><Button title="update" classes="btn btn__color-blue-long" type="submit" /></center>
         </form>
       </div>
     </>

@@ -6,7 +6,9 @@ import UserContext from '../User/UserContext';
 const List = (props) => {
     const router = useRouter();
     const user = useContext(UserContext);
-    const [isActive, setIsActive] = useState(props.user.active);
+    const [loading, setLoading] = useState(true);
+    const [isActive, setIsActive] = useState(false);
+    const randomTaille = Math.floor(Math.random() * 4)
 
     const removeProduct = (product)=>{
         let jwt = localStorage.getItem("jwt");
@@ -34,7 +36,12 @@ const List = (props) => {
         })
     }
     useEffect(() => {
-    }, [isActive]);
+        if(router.asPath === "/admin/users" && loading === true){
+            setIsActive(props.user.active)
+            setLoading(false)
+        }
+        console.log(props.product.stockTailles[randomTaille]?.qte)
+    }, [loading,isActive]);
     return (
         <>
             {router.asPath === "/admin/products" ?
@@ -50,15 +57,17 @@ const List = (props) => {
                                 </div>
                                 <div className="list__data">
                                     <h2 className="list__title">Color</h2>
-                                    <p className="list__price">Blue</p>
+                                    <p className="list__price">{props.product.couleur}</p>
                                 </div>
                                 <div className="list__data">
                                     <h2 className="list__title">Size</h2>
-                                    <p className="list__price">XS</p>
+                                    
+                                    <p className="list__price">{props.product.stockTailles[randomTaille]?.taille.libelle}</p>
                                 </div>
                                 <div className="list__data">
                                     <h2 className="list__title">Availability</h2>
-                                    <p className="list__price">In stock</p>
+                                    <p className="list__price">{props.product.stockTailles[randomTaille]?.qte === 0?(<>sold out</>):(<>In stock</>)
+                                    }</p>
                                 </div>
                                 <div className="list__button">
                                     <button className="btn btn__color-black" onClick={() => router.push(`/admin/products/update/${props.product.id}`)}>Modify</button>

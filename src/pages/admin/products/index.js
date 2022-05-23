@@ -6,17 +6,19 @@ import { useRouter } from 'next/router';
 const Index = () => {
   const router = useRouter();
   const [products, setProducts] = useState();
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    productService.getProducts()
+    if(loading === true){
+       productService.getProducts()
       .then((data) => {
         setProducts(data.data);
+        setLoading(false)
         console.log(data.data);
       })
       .catch(err => console.log(err))
-
-
-  }, [products]);
+    }
+  }, [loading]);
   return (
     <div>
       <br />

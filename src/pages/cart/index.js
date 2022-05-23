@@ -137,7 +137,7 @@ const Index = () => {
                     </div>
                     <div className="about">
                       <h2 className="title">{cartItem.nom}</h2>
-                      <h3 className="subtitle">{cartItem.couleur}</h3>
+                      <h3 className="color">{cartItem.couleur}</h3>
                       <h3 className="subtitle">{cartItem.size.libelle}</h3>
                     </div>
                     <div className="counter">
@@ -147,7 +147,6 @@ const Index = () => {
                     </div>
                     <div className="prices">
                       <div className="amount">{cartItem.prix} €</div>
-                      <div className="save"><u>Save for later</u></div>
                       <div className="remove" onClick={() => deleteProduct(cartItem)}><u>Remove</u></div>
                     </div>
                   </div >))}

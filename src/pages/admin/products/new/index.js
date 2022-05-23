@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
+import withAdminAuth from "../../../../HOC/withAdminAuth";
 
 const Index = () => {
 
@@ -13,6 +14,15 @@ const Index = () => {
 
 
   const submitNewProduct = (e) => {
+    toast.success("Your item has been successfully created !", {
+      position: "top-center",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      });
     let jwt = localStorage.getItem("jwt")
     let formData = new FormData();
     formData.append("nom",product.nom)
@@ -128,4 +138,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default withAdminAuth(Index);

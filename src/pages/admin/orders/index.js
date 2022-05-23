@@ -1,22 +1,16 @@
 
 import axios from "axios";
 import React, { useEffect, useState, useContext } from "react";
-import withAuth from "../../HOC/withAuth";
-import Button from "../../components/Button";
+import withAdminAuth from "../../../HOC/withAdminAuth";
+import Button from "../../../components/Button";
 import { useRouter } from 'next/router';
-import UserContext from "../../User/UserContext"
+import UserContext from "../../../User/UserContext";
 
 const Index = () => {
   const [loading, setloading] = useState(true);
   const [userCommande, setUserCommande] = useState([]);
   const router = useRouter();
   const user = useContext(UserContext);
-
-  const logout = () => {
-    localStorage.removeItem('jwt');
-    localStorage.removeItem('admin');
-    router.push("/login")
-  }
 
   const formatDate = (date) => {
     let newDate = new Date(date)
@@ -52,16 +46,11 @@ const Index = () => {
 
   return (
     <>
-      <div className="profil">
+      <div className="orders">
       </div>
-      <Button type="button"
-        classes="btn btn__color-black"
-        function={logout}
-        title="Logout" />
-      <h1>Welcome {user.user && user.user.pseudo} !</h1>
       <center>
-        <div className="profil">
-          <h1>My Orders :</h1>
+        <div className="orders">
+          <h1>Orders :</h1>
           {loading === false ? (
             userCommande.map((commande) => {
               return <tr key={commande[0].id}>
@@ -99,4 +88,4 @@ const Index = () => {
   );
 }
 
-export default withAuth(Index);
+export default withAdminAuth(Index);

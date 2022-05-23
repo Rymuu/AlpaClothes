@@ -24,7 +24,7 @@ const Index = () => {
   }, []);
 
   const decrementQty = (product) => {
-    const indexOfExistingProduct = cart.findIndex((el) => el.id === product.id);
+    const indexOfExistingProduct = cart.findIndex((el) => el.id === product.id && el.size.size === product.size.size);
     if (indexOfExistingProduct !== -1 && cart[indexOfExistingProduct].quantity > 1) {
       cart[indexOfExistingProduct].quantity -= 1;
       localStorage.setItem("cart", JSON.stringify(cart));
@@ -32,7 +32,7 @@ const Index = () => {
     }
   };
   const incrementQty = (product) => {
-    const indexOfExistingProduct = cart.findIndex((el) => el.id === product.id);
+    const indexOfExistingProduct = cart.findIndex((el) => el.id === product.id && el.size.size === product.size.size);
     if (indexOfExistingProduct !== -1) {
       cart[indexOfExistingProduct].quantity += 1;
     }
@@ -63,18 +63,18 @@ const Index = () => {
   }
 
   const getFormData = (object) => {
-      const formData = new FormData();
-      let panierArray = [];
-      Object.keys(object).forEach(key => {
-            console.log(object);
-            //panierArray[key]= [object[key].id,object[key].quantity]
-            formData.append(`panier[${[key]}][produit]`, object[key].id)
-            formData.append(`panier[${[key]}][size]`, object[key].size.size)
-            formData.append(`panier[${[key]}][qte]`, object[key].quantity)
-        });
-        
-        console.log(panierArray);
-      return formData;
+    const formData = new FormData();
+    let panierArray = [];
+    Object.keys(object).forEach(key => {
+      console.log(object);
+      //panierArray[key]= [object[key].id,object[key].quantity]
+      formData.append(`panier[${[key]}][produit]`, object[key].id)
+      formData.append(`panier[${[key]}][size]`, object[key].size.size)
+      formData.append(`panier[${[key]}][qte]`, object[key].quantity)
+    });
+
+    console.log(panierArray);
+    return formData;
   }
 
   const paidCart = () => {
@@ -88,11 +88,11 @@ const Index = () => {
         Authorization: `Bearer ${jwt}`
       }
     })
-    .then()
-    .catch((error) => {
-      console.log(error.response)
-    })
-
+      .then()
+      .catch((error) => {
+        console.log(error.response)
+      })
+    deleteCart();
   }
 
   return (
@@ -128,7 +128,7 @@ const Index = () => {
               </div>
               {cart &&
                 cart.map((cartItem) => (
-                  
+
                   <div className="Cart-Items">{console.log(cartItem)}
                     <div className="image-box">
                       <Link href={`/shop/product/${cartItem.id}`}>
@@ -137,7 +137,7 @@ const Index = () => {
                     </div>
                     <div className="about">
                       <h2 className="title">{cartItem.nom}</h2>
-                      <h3 className="subtitle">{cartItem.couleur}</h3>
+                      <h3 className="color">{cartItem.couleur}</h3>
                       <h3 className="subtitle">{cartItem.size.libelle}</h3>
                     </div>
                     <div className="counter">
@@ -147,7 +147,6 @@ const Index = () => {
                     </div>
                     <div className="prices">
                       <div className="amount">{cartItem.prix} €</div>
-                      <div className="save"><u>Save for later</u></div>
                       <div className="remove" onClick={() => deleteProduct(cartItem)}><u>Remove</u></div>
                     </div>
                   </div >))}

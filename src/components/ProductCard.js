@@ -5,7 +5,7 @@ import Button from "../components/Button";
 const Productcard = (props) => {
   const [size, setSize] = useState({
     size: 1,
-    libelle:"S",
+    libelle: "S",
   });
   const addTocart = (element) => {
     console.log(size);
@@ -30,7 +30,7 @@ const Productcard = (props) => {
       localStorageCart.forEach(product => {
         cartArray.push(product);
       });
-      const indice = cartArray.findIndex((product) => product.id === productToInsert.id)
+      const indice = cartArray.findIndex((product) => product.id === productToInsert.id && product.size.size == productToInsert.size.size)
       //si le produit est déjà dans le panier
       if (indice !== -1) {
         productToInsert = cartArray[indice];
@@ -39,6 +39,7 @@ const Productcard = (props) => {
       }
       else {
         cartArray.push(productToInsert);
+
       }
 
       localStorage.setItem('cart', JSON.stringify(cartArray));
@@ -60,8 +61,12 @@ const Productcard = (props) => {
       </div>
       <div className="product__data">
         <h2>{props.product.nom}</h2>
-        <div className="container_price_size"><p>{props.product.prix} € </p>
-        <select className="size" onChange={(e)=>{ setSize({size: e.target.value, libelle: e.target.options[e.target.selectedIndex].text})}}>{props.product.stockTailles?.map((taille)=>{return <option value={taille.taille.id}>{taille.taille.libelle}</option>})}</select></div>
+        <div>
+          <select className="size" onChange={(e) => { setSize({ size: e.target.value, libelle: e.target.options[e.target.selectedIndex].text }) }}>
+            {props.product.stockTailles?.map((taille) => { return <option value={taille.taille.id}>{taille.taille.libelle}</option> })}
+          </select>
+        </div>
+        <div className="container_price_size"><p>{props.product.prix} € </p></div>
       </div>
       <div className="product__button">
         <Button title="ajouter au panier" function={() => addTocart(props.product)} type="button" classes="btn btn__color-black-long" />

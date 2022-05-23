@@ -39,6 +39,7 @@ const Index = () => {
             console.log(response);
           } else {
             localStorage.setItem('jwt', response.data.token);
+            localStorage.setItem('admin', "true");
             router.push("/account");
           }
           console.log('User profile', response.data.user);
@@ -72,7 +73,7 @@ const Index = () => {
           if (response.data.error) {
             console.log(response);
           } else {
-            localStorage.setItem('jwt', response.data.token);
+            localStorage.setItem('jwt', response.data.token)
             router.push("/account");
           }
           console.log('User profile', response.data.user);

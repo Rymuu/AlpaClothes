@@ -85,14 +85,6 @@ const Index = () => {
             <option value="purple">Purple</option>
             <option value="multicolor">Multicolor</option>
           </select>
-          <select className="select-filter" name="size" id="size-select" onChange={(e)=>handleFilter(e,"taille")}>
-            <option value="">Size</option>
-            <option value="xs">XS</option>
-            <option value="s">S</option>
-            <option value="m">M</option>
-            <option value="l">L</option>
-            <option value="xl">XL</option>
-          </select>
           <select className="select-filter" name="category" id="category-select" onChange={(e)=>handleFilter(e,"categorie")}>
             <option value="">All Categories</option>
             <option value={1}>Shirts</option>

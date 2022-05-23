@@ -8,7 +8,30 @@
             padding: 50px;
         }
     }
+
     &__data {
         padding: 50px;
+    }
+}
+
+.product__slider__card {
+    border: 1px solid #ccc;
+    margin: 20px;
+    grid-column: span 1;
+    grid-row: span 1;
+
+    .product__slider__img {
+        img {
+            cursor: pointer;
+            width: 300px;
+            height: 350px;
+        }
+    }
+
+    .product__slider__data {
+        margin-left: 20px;
+        h2 {
+            font-size: 15px;
+        }
     }
 }

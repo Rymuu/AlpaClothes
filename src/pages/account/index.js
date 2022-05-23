@@ -33,9 +33,10 @@ const Index = () => {
 
   useEffect(() => {
     const getCommande = () =>{
+      let jwt = localStorage.getItem("jwt");
       const result = axios.get("http://localhost:8000/client/commande",{
         headers: {
-          Authorization : `Bearer ${user.jwt}`
+          Authorization : `Bearer ${jwt}`
         }
       }).then((res)=>{
         setUserCommande(res.data.data)
@@ -70,7 +71,7 @@ const Index = () => {
           <tbody>
             { loading === false ? (
               userCommande?.map((commande)=>{
-                return <tr>
+                return <tr key={commande[0].id}>
                   <td>{commande[0].id}</td>
                   <td>{formatDate(commande[0].dateEmission)}</td>
                   <td>{commande[0].prix}</td>

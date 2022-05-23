@@ -19,6 +19,7 @@ const ProductCardId = (props) => {
       id: element.id,
       prix: element.prix,
       image: element.image,
+      couleur: element.couleur,
       size: size,
       quantity: 1
 

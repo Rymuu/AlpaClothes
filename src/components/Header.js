@@ -8,13 +8,20 @@ import { useRouter } from "next/router";
 
 const Header = () => {
   const [isLogged, setIsLogged] = useState()
+  const [isAdmin, setIsAdmin] = useState()
 
   const getAccessToken = () => {
     if (typeof window !== 'undefined')
       return localStorage.getItem('jwt');
   };
+  const getAdminToken = () => {
+    if (typeof window !== 'undefined')
+      return localStorage.getItem('admin');
+  };
 
   const accessToken = getAccessToken();
+  const accessTokenAdmin = getAdminToken();
+
   useEffect(() => {
     {
       accessToken === null ?
@@ -24,6 +31,16 @@ const Header = () => {
         :
         (
           setIsLogged(true)
+        )
+    }
+    {
+      accessTokenAdmin === null ?
+        (
+          setIsAdmin(false)
+        )
+        :
+        (
+          setIsAdmin(true)
         )
     }
   }, []);
@@ -56,18 +73,24 @@ const Header = () => {
                   (<a className="nav__link">Shop</a>)}
               </Link>
             </li>
-            <li className="dropdown nav__item">
-              <div>
-                {router.asPath === "/admin/users" || router.asPath === "/admin/products" ?
-                  (<a className="nav__link__colored">Admin</a>)
-                  :
-                  (<a className="nav__link">Admin</a>)}
-              </div>
-              <div className="dropdown-content">
-                <a href="/admin/users">Users</a>
-                <a href="/admin/products">Products</a>
-              </div>
-            </li>
+            {isLogged && isAdmin ?
+              (
+                <li className="dropdown nav__item">
+                  <div>
+                    {router.asPath === "/admin/users" || router.asPath === "/admin/products" ?
+                      (<a className="nav__link__colored">Admin</a>)
+                      :
+                      (<a className="nav__link">Admin</a>)}
+                  </div>
+                  <div className="dropdown-content">
+                    <a href="/admin/users">Users</a>
+                    <a href="/admin/products">Products</a>
+                  </div>
+                </li>
+              )
+              :
+              (<></>)
+            }
           </ul>
         </nav>
         <nav className="header__nav">

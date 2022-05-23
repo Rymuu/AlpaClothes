@@ -11,60 +11,69 @@ const Index = () => {
   const [commande, setCommande] = useState([]);
   const router = useRouter();
   const user = useContext(UserContext);
-  const {id } = router.query;
+  const { id } = router.query;
 
 
   useEffect(() => {
-    const getCommande = () =>{
+    const getCommande = () => {
       let jwt = localStorage.getItem("jwt");
-      const result = axios.get(`http://localhost:8000/commande/${id}`,{
+      const result = axios.get(`http://localhost:8000/commande/${id}`, {
         headers: {
-          Authorization : `Bearer ${jwt}`
+          Authorization: `Bearer ${jwt}`
         }
-      }).then((res)=>{
+      }).then((res) => {
         setCommande(res.data.data[0])
         setloading(false)
       })
     }
-    if(loading === true){
+    if (loading === true) {
       getCommande();
     }
     console.log(commande);
-  }, [user,loading]);
+  }, [user, loading]);
 
   return (
     <>
-    <div className="profil">
-        <table>
-          <thead>
-            <tr>
-              <th>produit</th>
-              <th>couleur</th>
-              <th>taille</th>
-              <th>prix</th>
-              <th>qte</th>
-            </tr>
-          </thead>
-          <tbody>
-          { loading === false ? (
-              commande.ligneCommande?.map((ligne)=>{
-                  console.log(ligne);
-                return <tr key={ligne?.id}>
-                  <td>{ligne?.produit.nom}</td>
-                  <td>{ligne?.produit.couleur}</td>
-                  <td>{ligne?.taille.libelle}</td>
-                  <td>{ligne?.produit.prix}</td>
-                  <td>{ligne?.qte}</td>
-                </tr>
-              })
-            ):(null)
+      <center>
+        <div className="profil">
+          <h1>Order Summary :</h1>
+          {loading === false ? (
+            commande.ligneCommande?.map((ligne) => {
+              console.log(ligne);
+              return <tr key={ligne?.id}>
+                <div className="list">
+                  <div className="list__container">
+                    <div className="list__data">
+                      <h2 className="list__title">{ligne?.produit.nom}</h2>
+                    </div>
+                    <div className="list__data">
+                      <h2 className="list__title">Color</h2>
+                      <p className="list__value">{ligne?.produit.couleur}</p>
+                    </div>
+                    <div className="list__data">
+                      <h2 className="list__title">Size</h2>
+                      <p className="list__value">{ligne?.taille.libelle}</p>
+                    </div>
+                    <div className="list__data">
+                      <h2 className="list__title">Price</h2>
+                      <p className="list__value">{ligne?.produit.prix} €</p>
+                    </div>
+                    <div className="list__data">
+                      <h2 className="list__title">Quantity</h2>
+                      <p className="list__value">{ligne?.qte}</p>
+                    </div>
+                  </div>
+                </div>
+              </tr>
+            })
+          ) : (null)
 
-            }
-          </tbody>
-          <div>total : {commande.prix}</div>
-        </table>
-    </div>
-    <h1>Bienvenue {user.user && user.user.pseudo} !</h1>
+          }
+          <br/>
+          <h1>Total : {commande.prix} €</h1>
+        </div>
+
+      </center>
     </>
   );
 }

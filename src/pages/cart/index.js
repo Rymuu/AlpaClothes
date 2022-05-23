@@ -63,18 +63,18 @@ const Index = () => {
   }
 
   const getFormData = (object) => {
-      const formData = new FormData();
-      let panierArray = [];
-      Object.keys(object).forEach(key => {
-            console.log(object);
-            //panierArray[key]= [object[key].id,object[key].quantity]
-            formData.append(`panier[${[key]}][produit]`, object[key].id)
-            formData.append(`panier[${[key]}][size]`, object[key].size.size)
-            formData.append(`panier[${[key]}][qte]`, object[key].quantity)
-        });
-        
-        console.log(panierArray);
-      return formData;
+    const formData = new FormData();
+    let panierArray = [];
+    Object.keys(object).forEach(key => {
+      console.log(object);
+      //panierArray[key]= [object[key].id,object[key].quantity]
+      formData.append(`panier[${[key]}][produit]`, object[key].id)
+      formData.append(`panier[${[key]}][size]`, object[key].size.size)
+      formData.append(`panier[${[key]}][qte]`, object[key].quantity)
+    });
+
+    console.log(panierArray);
+    return formData;
   }
 
   const paidCart = () => {
@@ -88,11 +88,11 @@ const Index = () => {
         Authorization: `Bearer ${jwt}`
       }
     })
-    .then()
-    .catch((error) => {
-      console.log(error.response)
-    })
-
+      .then()
+      .catch((error) => {
+        console.log(error.response)
+      })
+    deleteCart();
   }
 
   return (
@@ -128,7 +128,7 @@ const Index = () => {
               </div>
               {cart &&
                 cart.map((cartItem) => (
-                  
+
                   <div className="Cart-Items">{console.log(cartItem)}
                     <div className="image-box">
                       <Link href={`/shop/product/${cartItem.id}`}>

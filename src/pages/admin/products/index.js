@@ -2,6 +2,7 @@ import List from "../../../components/List";
 import { useEffect, useState } from "react";
 import productService from "../../../services/product.service";
 import { useRouter } from 'next/router';
+import withAdminAuth from "../../../HOC/withAdminAuth";
 
 const Index = () => {
   const router = useRouter();
@@ -34,4 +35,4 @@ const Index = () => {
   );
 }
 
-export default Index;
+export default withAdminAuth(Index);

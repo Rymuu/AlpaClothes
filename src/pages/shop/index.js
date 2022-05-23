@@ -64,11 +64,6 @@ const Index = () => {
             </input>
             <SearchOutlinedIcon className="search__icon"/>
           </div>
-          
-          <select className="select-filter" name="filter" id="filter-select" onChange={(e)=>handleFilter(e,"ordre")}>
-            <option value="">Asc</option>
-            <option value="dsc">Dsc</option>
-          </select>
         </div>
         <p>Popular filter :</p>
         <div className="filter__container">

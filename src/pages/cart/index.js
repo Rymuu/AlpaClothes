@@ -83,18 +83,19 @@ const Index = () => {
     <div className="page__cart">
       {cart ? (
         <>
+        
           <p>Vous avez {renderTotalQty()} produits dans votre panier</p>
           <table>
             <thead>
               <tr>
-                <th>Image</th>
-                <th>Titre</th>
-                <th>Prix</th>
-                <th>Quantité</th>
-                <th>Total</th>
+                <th>Shopping Cart</th>
                 <th></th>
+                <th></th>
+                <th></th>
+                <th>Delete All</th>
               </tr>
             </thead>
+            <br/>
             <tbody>
               {cart.map((cartItem) => (
                 <tr key={cartItem.id}>

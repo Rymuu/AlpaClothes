@@ -11,6 +11,7 @@ const Productcard = (props) => {
       id: element.id,
       prix: element.prix,
       image: element.image,
+      couleur: element.couleur,
       quantity: 1
 
     };

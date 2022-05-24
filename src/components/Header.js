@@ -43,7 +43,7 @@ const Header = () => {
           setIsAdmin(true)
         )
     }
-  }, []);
+  }, [isAdmin,isLogged]);
 
 
   const router = useRouter();

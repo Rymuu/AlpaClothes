@@ -5,7 +5,7 @@ import { useRouter } from 'next/router';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import axios from "axios";
-import withAdminAuth from "../../../../HOC/withAdminAuth";
+import withAdminAuth from "../../../../../HOC/withAdminAuth";
 
 const Index = () => {
 

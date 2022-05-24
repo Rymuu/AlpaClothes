@@ -85,6 +85,7 @@ const Header = () => {
                   <div className="dropdown-content">
                     <a href="/admin/users">Users</a>
                     <a href="/admin/products">Products</a>
+                    <a href="/admin/orders">Orders</a>
                   </div>
                 </li>
               )

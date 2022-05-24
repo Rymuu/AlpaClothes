@@ -92,7 +92,6 @@ const Index = () => {
       .catch((error) => {
         console.log(error.response)
       })
-    deleteCart();
   }
 
   return (

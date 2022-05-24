@@ -1,3 +1,11 @@
+Pour bien commencer :
+- Cloner le projet Git
+- Taper la commande npm install dans le terminal
+- Taper la commande npm run dev pour lancer le projet
+- Accéder à l'adresse http://localhost:3000 sur son browser pour avoir accès au site.
+
+---------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
